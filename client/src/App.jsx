@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import { Route, Routes } from 'react-router-dom';
+import { Route, Routes, useLocation } from 'react-router-dom';
+import { AnimatePresence } from 'framer-motion';
 import Lenis from 'lenis';
 import { 
   Navbar, 
@@ -10,9 +11,12 @@ import {
   TutorialModal 
 } from './components';
 import SpotlightGlow from './components/SpotlightGlow';
+import PageTransition from './components/PageTransition';
+import ScrollToTop from './components/ScrollToTop';
 import { CampaignDetails, CreateCampaign, Home, Profile } from './pages';
 
 const App = () => {
+  const location = useLocation();
   const [howItWorksOpen, setHowItWorksOpen] = useState(false);
   const [tutorialOpen, setTutorialOpen] = useState(false);
 
@@ -40,6 +44,9 @@ const App = () => {
   return (
     <div className="min-h-screen bg-[#000000] text-[#F3F4F6] flex flex-col relative selection:bg-emerald-500/20 selection:text-emerald-400">
       
+      {/* Route change scroll restoration */}
+      <ScrollToTop />
+
       {/* Interactive Cursor Spotlight Glow */}
       <SpotlightGlow />
 
@@ -49,22 +56,47 @@ const App = () => {
         onOpenTutorial={() => setTutorialOpen(true)}
       />
 
-      {/* Main Viewport */}
-      <main className="flex-1">
-        <Routes>
-          <Route 
-            path="/" 
-            element={
-              <Home 
-                onOpenHowItWorks={() => setHowItWorksOpen(true)}
-                onOpenTutorial={() => setTutorialOpen(true)}
-              />
-            } 
-          />
-          <Route path="/profile" element={<Profile />} />
-          <Route path="/create-campaign" element={<CreateCampaign />} />
-          <Route path="/campaign-details/:id" element={<CampaignDetails />} />
-        </Routes>
+      {/* Main Viewport with AnimatePresence Page Transitions */}
+      <main className="flex-1 overflow-hidden">
+        <AnimatePresence mode="wait" initial={false}>
+          <Routes location={location} key={location.pathname}>
+            <Route 
+              path="/" 
+              element={
+                <PageTransition>
+                  <Home 
+                    onOpenHowItWorks={() => setHowItWorksOpen(true)}
+                    onOpenTutorial={() => setTutorialOpen(true)}
+                  />
+                </PageTransition>
+              } 
+            />
+            <Route 
+              path="/profile" 
+              element={
+                <PageTransition>
+                  <Profile />
+                </PageTransition>
+              } 
+            />
+            <Route 
+              path="/create-campaign" 
+              element={
+                <PageTransition>
+                  <CreateCampaign />
+                </PageTransition>
+              } 
+            />
+            <Route 
+              path="/campaign-details/:id" 
+              element={
+                <PageTransition>
+                  <CampaignDetails />
+                </PageTransition>
+              } 
+            />
+          </Routes>
+        </AnimatePresence>
       </main>
 
       {/* Modals & Notifications */}

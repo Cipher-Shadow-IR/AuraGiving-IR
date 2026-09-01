@@ -1,5 +1,6 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
+import { motion } from 'framer-motion';
 import { 
   HeartHandshake, 
   Plus, 
@@ -61,48 +62,53 @@ const Navbar = ({ onOpenHowItWorks, onOpenTutorial }) => {
 
   return (
     <header className="sticky top-4 z-40 w-full px-4 sm:px-6">
-      <div className="max-w-4xl mx-auto rounded-full bg-[#050508]/80 backdrop-blur-2xl border border-white/[0.1] shadow-2xl px-5 py-2.5 flex items-center justify-between transition-all">
+      <div className="max-w-4xl mx-auto rounded-full bg-[#050508]/85 backdrop-blur-2xl border border-white/[0.1] shadow-2xl px-4 sm:px-5 py-2 flex items-center justify-between transition-all">
         
         {/* Brand Logo */}
         <Link to="/" className="flex items-center gap-2 group">
           <div className="w-7 h-7 rounded-full bg-emerald-500/10 border border-emerald-500/30 flex items-center justify-center text-emerald-400 group-hover:bg-emerald-500/20 transition-colors">
             <HeartHandshake className="w-3.5 h-3.5" />
           </div>
-          <span className="font-bold text-sm tracking-tight text-white font-display">
+          <span className="font-bold text-sm tracking-tight text-white font-display hidden sm:inline">
             Aura<span className="text-emerald-400">Giving</span>
           </span>
         </Link>
 
-        {/* Desktop Nav Links */}
-        <nav className="hidden md:flex items-center gap-6 text-xs font-medium">
+        {/* Desktop Nav Links with Sliding Active Tab Indicator */}
+        <nav className="hidden md:flex items-center gap-1 text-xs font-medium bg-white/[0.02] p-1 rounded-full border border-white/[0.04]">
           {navLinks.map((link) => {
             const isActive = location.pathname === link.path;
             return (
               <Link
                 key={link.path}
                 to={link.path}
-                className={`transition-colors ${
-                  isActive
-                    ? 'text-white font-semibold'
-                    : 'text-slate-400 hover:text-slate-200'
-                }`}
+                className="relative px-3.5 py-1.5 rounded-full transition-colors text-slate-400 hover:text-white"
               >
-                {link.name}
+                {isActive && (
+                  <motion.div
+                    layoutId="nav-pill"
+                    transition={{ type: "spring", stiffness: 350, damping: 30 }}
+                    className="absolute inset-0 bg-white/[0.08] border border-white/[0.12] rounded-full"
+                  />
+                )}
+                <span className={`relative z-10 ${isActive ? 'text-white font-semibold' : ''}`}>
+                  {link.name}
+                </span>
               </Link>
             );
           })}
 
           <button
             onClick={onOpenTutorial}
-            className="text-slate-400 hover:text-slate-200 transition-colors flex items-center gap-1"
+            className="px-3 py-1.5 rounded-full text-slate-400 hover:text-white hover:bg-white/[0.04] transition-colors flex items-center gap-1.5"
           >
-            <BookOpen className="w-3 h-3" />
+            <BookOpen className="w-3 h-3 text-emerald-400" />
             <span>Guide</span>
           </button>
 
           <button
             onClick={onOpenHowItWorks}
-            className="text-slate-400 hover:text-slate-200 transition-colors"
+            className="px-3 py-1.5 rounded-full text-slate-400 hover:text-white hover:bg-white/[0.04] transition-colors"
           >
             Protocol
           </button>

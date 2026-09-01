@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { motion } from 'framer-motion';
 import { 
   Plus, 
   Image as ImageIcon, 
@@ -139,25 +140,30 @@ const CreateCampaign = () => {
           className="inline-flex items-center gap-1.5 text-xs font-medium text-slate-400 hover:text-slate-200 transition-colors"
         >
           <ArrowLeft className="w-3.5 h-3.5" />
-          <span>Back to Explore</span>
+          <span>Back to Directory</span>
         </button>
 
-        <span className="text-xs font-mono text-slate-400">
-          Smart Contract Verification
+        <span className="text-xs font-mono text-emerald-400 flex items-center gap-1">
+          <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
+          <span>EVM Deployment Verified</span>
         </span>
       </div>
 
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
         
         {/* Left Form */}
-        <div className="lg:col-span-7 p-6 sm:p-7 rounded-xl bg-[#12151C] border border-white/[0.08] space-y-6">
-          
+        <motion.div 
+          initial={{ opacity: 0, x: -20 }}
+          animate={{ opacity: 1, x: 0 }}
+          transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
+          className="lg:col-span-7 gradient-border rounded-xl p-6 sm:p-7 space-y-6 shadow-sm"
+        >
           <div className="space-y-1">
-            <h1 className="text-xl font-semibold text-white tracking-tight">
-              Create a Charitable Mission
+            <h1 className="text-2xl font-bold text-white tracking-tight font-display">
+              Launch a Charitable Mission
             </h1>
-            <p className="text-xs text-slate-400">
-              Deploy your campaign directly to the Ethereum blockchain. All incoming funds route non-custodially to your wallet.
+            <p className="text-xs text-slate-400 leading-relaxed">
+              Deploy your campaign directly to the Ethereum blockchain. All incoming funds route non-custodially to your address.
             </p>
           </div>
 
@@ -193,7 +199,7 @@ const CreateCampaign = () => {
 
             <FormField
               labelName="Campaign Title *"
-              placeholder="e.g. Solar Water Wells for Rural Communities"
+              placeholder="e.g. Clean Drinking Water Wells for Rural Communities"
               inputType="text"
               value={form.title}
               handleChange={(e) => handleFormFieldChange('title', e)}
@@ -201,12 +207,12 @@ const CreateCampaign = () => {
             />
 
             <FormField
-              labelName="Mission Narrative & Budget *"
-              placeholder="Explain the background, timeline, and how every wei will be utilized..."
+              labelName="Mission Narrative & Execution Plan *"
+              placeholder="Explain the mission, financial breakdown, timeline, and how contributions will be spent..."
               isTextArea
               value={form.description}
               handleChange={(e) => handleFormFieldChange('description', e)}
-              hint="Be clear and transparent"
+              hint="High detail builds donor trust"
               required
             />
 
@@ -260,7 +266,7 @@ const CreateCampaign = () => {
               />
 
               <div className="flex items-center gap-1.5 flex-wrap pt-0.5">
-                <span className="text-[11px] text-slate-500">Presets:</span>
+                <span className="text-[11px] text-slate-500 font-mono">Presets:</span>
                 {CURATED_IMAGES.map((preset) => (
                   <button
                     type="button"
@@ -278,7 +284,7 @@ const CreateCampaign = () => {
               <button
                 type="submit"
                 disabled={isLoading}
-                className="w-full py-2.5 rounded-lg font-semibold text-slate-950 bg-emerald-400 hover:bg-emerald-300 transition-colors flex items-center justify-center gap-1.5 text-xs disabled:opacity-50"
+                className="btn-sheen w-full py-2.5 rounded-lg font-semibold text-slate-950 bg-emerald-400 hover:bg-emerald-300 transition-all flex items-center justify-center gap-1.5 text-xs active:scale-95 disabled:opacity-50"
               >
                 {isLoading ? (
                   <>
@@ -288,7 +294,7 @@ const CreateCampaign = () => {
                 ) : (
                   <>
                     <Plus className="w-3.5 h-3.5" />
-                    <span>Deploy Campaign On-Chain</span>
+                    <span>Deploy Mission On-Chain</span>
                   </>
                 )}
               </button>
@@ -296,19 +302,26 @@ const CreateCampaign = () => {
 
           </form>
 
-        </div>
+        </motion.div>
 
         {/* Right Column: Live Realtime Preview */}
-        <div className="lg:col-span-5 sticky top-20 space-y-3">
+        <motion.div 
+          initial={{ opacity: 0, x: 20 }}
+          animate={{ opacity: 1, x: 0 }}
+          transition={{ duration: 0.5, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
+          className="lg:col-span-5 sticky top-20 space-y-3"
+        >
           <div className="flex items-center justify-between text-xs text-slate-400">
-            <span className="font-mono text-[11px] uppercase tracking-wider">Live Card Preview</span>
-            <span className="text-slate-500 font-mono text-[11px]">As seen in Directory</span>
+            <span className="font-mono text-[11px] uppercase tracking-wider text-emerald-400">
+              Live Realtime Preview
+            </span>
+            <span className="text-slate-500 font-mono text-[11px]">As rendered in Directory</span>
           </div>
 
           <FundCard
             owner={address || "0xYourAddress..."}
             title={form.title || "Your Campaign Title"}
-            description={form.description || "Mission summary will appear here for backers..."}
+            description={form.description || "Mission summary will appear here for donors..."}
             target={form.target || "10.0"}
             deadline={form.deadline ? new Date(form.deadline).getTime() : Date.now() + 1000 * 60 * 60 * 24 * 30}
             amountCollected="0.0"
@@ -318,7 +331,7 @@ const CreateCampaign = () => {
             donators={[]}
             isSample={false}
           />
-        </div>
+        </motion.div>
 
       </div>
     </div>
