@@ -7,20 +7,20 @@ const FormField = ({
   isTextArea = false, 
   value, 
   handleChange, 
-  step,
-  hint,
+  step, 
+  hint, 
   required = true,
   icon: Icon
 }) => {
   return (
-    <label className="flex-1 w-full flex flex-col space-y-2">
+    <div className="flex-1 w-full flex flex-col space-y-1.5">
       {labelName && (
         <div className="flex items-center justify-between">
-          <span className="text-xs font-semibold text-slate-300 tracking-wide">
+          <label className="text-xs font-medium text-slate-300">
             {labelName}
-          </span>
+          </label>
           {hint && (
-            <span className="text-[11px] text-slate-400">
+            <span className="text-[11px] text-slate-500 font-mono">
               {hint}
             </span>
           )}
@@ -29,7 +29,7 @@ const FormField = ({
 
       <div className="relative w-full">
         {Icon && (
-          <Icon className="absolute left-4 top-3.5 w-4 h-4 text-slate-400 pointer-events-none" />
+          <Icon className="absolute left-3 top-2.5 w-3.5 h-3.5 text-slate-500 pointer-events-none" />
         )}
 
         {isTextArea ? (
@@ -37,10 +37,10 @@ const FormField = ({
             required={required}
             value={value}
             onChange={handleChange}
-            rows={5}
+            rows={4}
             placeholder={placeholder}
-            className={`w-full py-3.5 px-4 rounded-2xl bg-white/[0.04] border border-white/[0.1] text-sm text-white placeholder:text-slate-500 focus:outline-none focus:border-emerald-500/50 focus:bg-white/[0.06] transition-all backdrop-blur-md resize-y min-h-[120px] ${
-              Icon ? 'pl-11' : ''
+            className={`w-full py-2 px-3 rounded-lg bg-[#0D0F15] border border-white/[0.08] text-xs text-white placeholder:text-slate-600 focus:outline-none focus:border-emerald-500 transition-colors resize-y ${
+              Icon ? 'pl-9' : ''
             }`}
           />
         ) : (
@@ -51,13 +51,13 @@ const FormField = ({
             type={inputType}
             step={step}
             placeholder={placeholder}
-            className={`w-full py-3 px-4 rounded-2xl bg-white/[0.04] border border-white/[0.1] text-sm text-white placeholder:text-slate-500 focus:outline-none focus:border-emerald-500/50 focus:bg-white/[0.06] transition-all backdrop-blur-md ${
-              Icon ? 'pl-11' : ''
+            className={`w-full py-2 px-3 rounded-lg bg-[#0D0F15] border border-white/[0.08] text-xs text-white placeholder:text-slate-600 focus:outline-none focus:border-emerald-500 transition-colors ${
+              Icon ? 'pl-9' : ''
             }`}
           />
         )}
       </div>
-    </label>
+    </div>
   );
 };
 

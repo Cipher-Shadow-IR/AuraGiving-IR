@@ -8,9 +8,8 @@ module.exports = {
   theme: {
     extend: {
       fontFamily: {
-        sans: ['"Plus Jakarta Sans"', 'sans-serif'],
-        display: ['Outfit', 'sans-serif'],
-        epilogue: ['"Plus Jakarta Sans"', 'sans-serif'],
+        sans: ['"Inter"', '"Plus Jakarta Sans"', 'sans-serif'],
+        mono: ['"JetBrains Mono"', '"Fira Code"', 'monospace'],
       },
       colors: {
         brand: {
@@ -19,46 +18,32 @@ module.exports = {
           400: '#34d399',
           500: '#10b981',
           600: '#059669',
+          700: '#047857',
         },
-        aurora: {
-          cyan: '#06b6d4',
-          emerald: '#10b981',
-          amber: '#f59e0b',
-          purple: '#8b5cf6',
-          rose: '#f43f5e',
-        },
-        dark: {
-          card: 'rgba(15, 23, 42, 0.7)',
-          cardHover: 'rgba(30, 41, 59, 0.8)',
-          glass: 'rgba(255, 255, 255, 0.03)',
+        surface: {
+          base: '#090A0F',
+          subtle: '#12151C',
+          card: '#161922',
+          cardHover: '#1B202B',
           border: 'rgba(255, 255, 255, 0.08)',
-          subtle: '#94a3b8',
+          borderSubtle: 'rgba(255, 255, 255, 0.05)',
+        },
+        accent: {
+          primary: '#10b981', // Refined Emerald
+          primaryHover: '#059669',
+          muted: '#3b82f6',
         }
+      },
+      borderRadius: {
+        'card': '14px',
+        'btn': '8px',
+        'input': '8px',
       },
       boxShadow: {
-        'glow-emerald': '0 0 35px -5px rgba(16, 185, 129, 0.3)',
-        'glow-cyan': '0 0 35px -5px rgba(6, 182, 212, 0.3)',
-        'glow-purple': '0 0 35px -5px rgba(139, 92, 246, 0.3)',
-        'glow-amber': '0 0 35px -5px rgba(245, 158, 11, 0.3)',
-        'glass': '0 8px 32px 0 rgba(0, 0, 0, 0.37)',
+        'card': '0 1px 3px 0 rgba(0, 0, 0, 0.3), 0 1px 2px -1px rgba(0, 0, 0, 0.2)',
+        'modal': '0 20px 25px -5px rgba(0, 0, 0, 0.5), 0 8px 10px -6px rgba(0, 0, 0, 0.4)',
       },
-      animation: {
-        'pulse-slow': 'pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite',
-        'float': 'float 6s ease-in-out infinite',
-        'shimmer': 'shimmer 2.5s linear infinite',
-      },
-      keyframes: {
-        float: {
-          '0%, 100%': { transform: 'translateY(0px)' },
-          '50%': { transform: 'translateY(-10px)' },
-        },
-        shimmer: {
-          '0%': { backgroundPosition: '-200% 0' },
-          '100%': { backgroundPosition: '200% 0' },
-        }
-      }
     },
   },
   plugins: [],
 }
-

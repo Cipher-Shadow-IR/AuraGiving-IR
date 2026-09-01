@@ -1,17 +1,11 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
-import { motion } from 'framer-motion';
 import { 
-  Sparkles, 
-  ArrowUpRight, 
-  ShieldCheck, 
-  Heart, 
-  Coins, 
-  Users, 
+  ArrowRight, 
   Clock, 
-  Flame,
-  PlayCircle,
-  HelpCircle
+  Heart, 
+  ArrowUpRight,
+  BookOpen
 } from 'lucide-react';
 import { useStateContext } from '../context';
 import { calculateBarPercentage, daysLeft } from '../utils';
@@ -29,157 +23,116 @@ const Hero = ({ campaigns = [], onOpenHowItWorks, onOpenTutorial, onScrollToExpl
   const totalBackers = campaigns.reduce((acc, c) => acc + (c.donators ? c.donators.length : 0), 0);
 
   return (
-    <div className="relative overflow-hidden pt-8 pb-16 md:pt-12 md:pb-24">
-      {/* Background Animated Glows */}
-      <motion.div 
-        animate={{ scale: [1, 1.15, 1], opacity: [0.15, 0.25, 0.15] }}
-        transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
-        className="absolute top-0 left-1/4 w-[500px] h-[500px] bg-emerald-500/20 rounded-full blur-[120px] pointer-events-none -z-10"
-      />
-      <motion.div 
-        animate={{ scale: [1.1, 1, 1.1], opacity: [0.12, 0.22, 0.12] }}
-        transition={{ duration: 10, repeat: Infinity, ease: "easeInOut", delay: 1 }}
-        className="absolute top-12 right-1/4 w-[450px] h-[450px] bg-cyan-500/20 rounded-full blur-[120px] pointer-events-none -z-10"
-      />
-
+    <div className="relative py-20 lg:py-28 border-b border-white/[0.06]">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        
-        {/* Top Highlight Badge */}
-        <motion.div 
-          initial={{ opacity: 0, y: -15 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5 }}
-          className="flex justify-center md:justify-start mb-6"
-        >
-          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-emerald-500/10 border border-emerald-500/20 text-emerald-300 text-xs font-semibold backdrop-blur-md shadow-inner">
-            <Sparkles className="w-3.5 h-3.5 text-emerald-400 animate-spin" style={{ animationDuration: '8s' }} />
-            <span>100% Direct Smart Contract Philanthropy</span>
-            <span className="w-1.5 h-1.5 rounded-full bg-emerald-400"></span>
-            <span className="text-slate-400">Zero Middleman Cut</span>
-          </div>
-        </motion.div>
-
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
           
           {/* Left Column */}
-          <motion.div 
-            initial={{ opacity: 0, x: -30 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.6, delay: 0.1 }}
-            className="lg:col-span-7 text-center lg:text-left space-y-6"
-          >
-            <h1 className="font-display font-black text-4xl sm:text-5xl lg:text-6xl text-white tracking-tight leading-[1.12]">
-              Every single wei <br />
-              <span className="text-gradient-emerald">creates genuine change.</span>
-            </h1>
-
-            <p className="text-base sm:text-lg text-slate-300 max-w-2xl mx-auto lg:mx-0 leading-relaxed font-normal">
-              A serene, trustless giving ecosystem powered by Ethereum smart contracts. Track every donation on-chain, support vital causes worldwide, or launch your own humanitarian mission in seconds.
-            </p>
-
-            {/* Action Buttons */}
-            <div className="flex flex-wrap items-center justify-center lg:justify-start gap-4 pt-2">
-              <motion.button
-                whileHover={{ scale: 1.03 }}
-                whileTap={{ scale: 0.97 }}
-                onClick={onScrollToExplore}
-                className="flex items-center justify-center gap-2 px-7 py-3.5 rounded-2xl font-bold text-slate-950 bg-gradient-to-r from-emerald-400 via-teal-300 to-cyan-400 hover:opacity-95 shadow-xl shadow-emerald-500/25 transition-all text-base"
-              >
-                <span>Explore Causes</span>
-                <ArrowUpRight className="w-5 h-5" />
-              </motion.button>
-
-              <motion.button
-                whileHover={{ scale: 1.03 }}
-                whileTap={{ scale: 0.97 }}
-                onClick={() => navigate('/create-campaign')}
-                className="flex items-center justify-center gap-2 px-7 py-3.5 rounded-2xl font-bold text-white bg-white/[0.06] hover:bg-white/[0.1] border border-white/[0.12] transition-all backdrop-blur-xl text-base shadow-lg hover:border-emerald-500/40"
-              >
-                <span>Start a Cause</span>
-              </motion.button>
-
-              {/* Interactive Tutorial Button */}
-              <motion.button
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-                onClick={onOpenTutorial}
-                className="inline-flex items-center gap-2 px-4 py-3 rounded-2xl text-xs font-bold text-emerald-300 bg-emerald-500/10 hover:bg-emerald-500/20 border border-emerald-500/25 transition-all shadow-md shadow-emerald-950/40"
-              >
-                <PlayCircle className="w-4 h-4 text-emerald-400 fill-emerald-500/20" />
-                <span>Interactive Tutorial</span>
-              </motion.button>
+          <div className="lg:col-span-7 space-y-8 text-left">
+            
+            {/* Minimal Subhead Tag */}
+            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-md bg-white/[0.03] border border-white/[0.08] text-xs font-mono text-slate-300">
+              <span className="w-1.5 h-1.5 rounded-full bg-emerald-400" />
+              <span>Decentralized Giving Protocol</span>
+              <span className="text-slate-500">•</span>
+              <span className="text-slate-400">Zero Middleman Fees</span>
             </div>
 
-            {/* Live Trust Metrics Bar */}
-            <div className="pt-8 border-t border-white/[0.08] grid grid-cols-3 gap-4 max-w-lg mx-auto lg:mx-0">
+            {/* Headline */}
+            <div className="space-y-4">
+              <h1 className="text-4xl sm:text-5xl lg:text-6xl font-semibold tracking-tight text-white leading-[1.1]">
+                Direct, transparent <br />
+                philanthropy on-chain.
+              </h1>
+              <p className="text-base sm:text-lg text-slate-400 max-w-xl leading-relaxed font-normal">
+                Every wei is routed straight to verified organizers via non-custodial Ethereum smart contracts. Real-time auditability, zero withholding.
+              </p>
+            </div>
+
+            {/* Action Group */}
+            <div className="flex flex-wrap items-center gap-3 pt-1">
+              <button
+                onClick={onScrollToExplore}
+                className="flex items-center justify-center gap-2 px-5 py-2.5 rounded-lg text-sm font-medium text-slate-950 bg-emerald-400 hover:bg-emerald-300 transition-colors shadow-sm"
+              >
+                <span>Explore Causes</span>
+                <ArrowRight className="w-4 h-4" />
+              </button>
+
+              <button
+                onClick={() => navigate('/create-campaign')}
+                className="flex items-center justify-center gap-2 px-5 py-2.5 rounded-lg text-sm font-medium text-slate-200 bg-white/[0.04] hover:bg-white/[0.08] border border-white/[0.08] transition-colors"
+              >
+                <span>Start a Cause</span>
+              </button>
+
+              <button
+                onClick={onOpenTutorial}
+                className="flex items-center gap-1.5 text-xs font-medium text-slate-400 hover:text-slate-200 px-3 py-2 transition-colors ml-1"
+              >
+                <BookOpen className="w-3.5 h-3.5" />
+                <span>How It Works</span>
+              </button>
+            </div>
+
+            {/* Understated Stats Strip with Divider Lines */}
+            <div className="pt-8 border-t border-white/[0.06] grid grid-cols-3 gap-6 max-w-lg">
               <div className="space-y-1">
-                <div className="flex items-center gap-1.5 text-xs text-slate-400 font-medium">
-                  <Coins className="w-3.5 h-3.5 text-emerald-400" />
-                  <span>Total Donated</span>
-                </div>
-                <p className="font-display font-bold text-2xl sm:text-3xl text-white font-mono">
-                  {totalEthRaised} <span className="text-sm font-normal text-emerald-400">ETH</span>
+                <p className="text-xs font-medium text-slate-400">Total Donated</p>
+                <p className="font-mono font-semibold text-2xl text-white">
+                  {totalEthRaised} <span className="text-xs font-normal text-slate-400 font-sans">ETH</span>
                 </p>
               </div>
 
-              <div className="space-y-1">
-                <div className="flex items-center gap-1.5 text-xs text-slate-400 font-medium">
-                  <Heart className="w-3.5 h-3.5 text-rose-400" />
-                  <span>Active Causes</span>
-                </div>
-                <p className="font-display font-bold text-2xl sm:text-3xl text-white">
+              <div className="space-y-1 pl-6 border-l border-white/[0.08]">
+                <p className="text-xs font-medium text-slate-400">Active Causes</p>
+                <p className="font-mono font-semibold text-2xl text-white">
                   {totalCauses}
                 </p>
               </div>
 
-              <div className="space-y-1">
-                <div className="flex items-center gap-1.5 text-xs text-slate-400 font-medium">
-                  <Users className="w-3.5 h-3.5 text-cyan-400" />
-                  <span>Global Donors</span>
-                </div>
-                <p className="font-display font-bold text-2xl sm:text-3xl text-white">
-                  {totalBackers}+
+              <div className="space-y-1 pl-6 border-l border-white/[0.08]">
+                <p className="text-xs font-medium text-slate-400">Total Backers</p>
+                <p className="font-mono font-semibold text-2xl text-white">
+                  {totalBackers}
                 </p>
               </div>
             </div>
-          </motion.div>
 
-          {/* Right Column: Featured Spotlight Cause */}
+          </div>
+
+          {/* Right Column: Structured Featured Card */}
           {featured && (
-            <motion.div 
-              initial={{ opacity: 0, x: 30 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.6, delay: 0.2 }}
-              className="lg:col-span-5 relative"
-            >
-              <div className="absolute -top-3 left-6 z-20 inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-gradient-to-r from-amber-500 to-rose-500 text-white text-xs font-black uppercase tracking-wider shadow-lg shadow-amber-500/20">
-                <Flame className="w-3.5 h-3.5 fill-current text-white animate-bounce" />
-                <span>Featured Cause</span>
-              </div>
-
-              <div className="glass-panel p-5 rounded-3xl border border-white/[0.12] shadow-2xl relative group overflow-hidden transition-all duration-300 hover:border-emerald-500/30">
-                <div className="relative h-60 w-full rounded-2xl overflow-hidden mb-4">
-                  <img
-                    src={featured.image}
-                    alt={featured.title}
-                    className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-[#070a13] via-transparent to-transparent opacity-80" />
-                  
-                  <div className="absolute bottom-3 left-3 px-3 py-1 rounded-xl bg-[#070a13]/80 backdrop-blur-md border border-white/[0.1] text-xs font-semibold text-emerald-300">
-                    {featured.category || "Emergency Relief"}
-                  </div>
-
-                  <div className="absolute bottom-3 right-3 flex items-center gap-1 px-2.5 py-1 rounded-xl bg-black/60 backdrop-blur-md border border-white/[0.1] text-xs font-mono text-slate-200">
-                    <Clock className="w-3.5 h-3.5 text-amber-400" />
+            <div className="lg:col-span-5">
+              <div className="rounded-xl bg-[#12151C] border border-white/[0.08] p-5 space-y-4 shadow-sm hover:border-white/[0.14] transition-all">
+                
+                <div className="flex items-center justify-between text-xs text-slate-400">
+                  <span className="font-medium text-emerald-400 uppercase tracking-wider text-[11px]">
+                    Spotlight Cause
+                  </span>
+                  <div className="flex items-center gap-1 font-mono">
+                    <Clock className="w-3.5 h-3.5 text-slate-400" />
                     <span>{daysLeft(featured.deadline)} days left</span>
                   </div>
                 </div>
 
-                <div className="space-y-2 mb-4">
+                <div className="relative h-52 w-full rounded-lg overflow-hidden bg-[#090A0F]">
+                  <img
+                    src={featured.image}
+                    alt={featured.title}
+                    className="w-full h-full object-cover"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-[#12151C] via-transparent to-transparent opacity-80" />
+                  
+                  <span className="absolute bottom-3 left-3 px-2.5 py-0.5 rounded-md bg-[#090A0F]/90 border border-white/[0.08] text-[11px] font-medium text-slate-200">
+                    {featured.category || "Emergency Relief"}
+                  </span>
+                </div>
+
+                <div className="space-y-1.5">
                   <h3 
                     onClick={() => navigate(`/campaign-details/${encodeURIComponent(featured.title)}`, { state: featured })}
-                    className="font-display font-bold text-xl text-white hover:text-emerald-400 transition-colors cursor-pointer line-clamp-1"
+                    className="font-semibold text-lg text-white hover:text-emerald-400 transition-colors cursor-pointer line-clamp-1"
                   >
                     {featured.title}
                   </h3>
@@ -188,47 +141,45 @@ const Hero = ({ campaigns = [], onOpenHowItWorks, onOpenTutorial, onScrollToExpl
                   </p>
                 </div>
 
-                <div className="space-y-2 mb-5">
-                  <div className="flex justify-between items-baseline text-xs font-semibold">
-                    <span className="text-white font-mono font-bold text-sm">
-                      {featured.amountCollected} <span className="text-slate-400 font-normal">ETH raised</span>
+                {/* Structured Thin Progress Bar */}
+                <div className="space-y-2 pt-1">
+                  <div className="flex justify-between items-baseline text-xs font-mono">
+                    <span className="text-white font-semibold">
+                      {featured.amountCollected} <span className="text-slate-400 font-normal">/ {featured.target} ETH</span>
                     </span>
-                    <span className="text-emerald-400 font-mono">
-                      {calculateBarPercentage(featured.target, featured.amountCollected)}% of {featured.target} ETH
+                    <span className="text-emerald-400 font-semibold">
+                      {calculateBarPercentage(featured.target, featured.amountCollected)}%
                     </span>
                   </div>
 
-                  <div className="relative w-full h-2.5 bg-slate-800 rounded-full overflow-hidden p-0.5">
-                    <motion.div
-                      initial={{ width: 0 }}
-                      animate={{ width: `${Math.min(calculateBarPercentage(featured.target, featured.amountCollected), 100)}%` }}
-                      transition={{ duration: 1, ease: "easeOut" }}
-                      className="h-full bg-gradient-to-r from-emerald-500 via-teal-400 to-cyan-400 rounded-full shadow-glow-emerald"
+                  <div className="w-full h-1.5 bg-white/[0.06] rounded-full overflow-hidden">
+                    <div
+                      className="h-full bg-emerald-400 rounded-full transition-all duration-300"
+                      style={{ width: `${Math.min(calculateBarPercentage(featured.target, featured.amountCollected), 100)}%` }}
                     />
                   </div>
                 </div>
 
-                <div className="grid grid-cols-2 gap-3">
+                {/* Actions */}
+                <div className="grid grid-cols-2 gap-2.5 pt-1">
                   <button
                     onClick={() => navigate(`/campaign-details/${encodeURIComponent(featured.title)}`, { state: featured })}
-                    className="w-full py-2.5 px-4 rounded-xl text-xs font-bold text-slate-200 bg-white/[0.05] hover:bg-white/[0.1] border border-white/[0.08] transition-all text-center"
+                    className="w-full py-2 px-3 rounded-lg text-xs font-medium text-slate-300 bg-white/[0.03] hover:bg-white/[0.07] border border-white/[0.08] transition-colors"
                   >
                     View Details
                   </button>
 
-                  <motion.button
-                    whileHover={{ scale: 1.02 }}
-                    whileTap={{ scale: 0.98 }}
+                  <button
                     onClick={() => setQuickDonateCampaign(featured)}
-                    className="w-full py-2.5 px-4 rounded-xl text-xs font-bold text-slate-950 bg-gradient-to-r from-emerald-400 to-teal-300 hover:opacity-95 shadow-md shadow-emerald-500/20 transition-all text-center flex items-center justify-center gap-1.5"
+                    className="w-full py-2 px-3 rounded-lg text-xs font-medium text-slate-950 bg-emerald-400 hover:bg-emerald-300 transition-colors flex items-center justify-center gap-1.5"
                   >
                     <Heart className="w-3.5 h-3.5 fill-current" />
                     <span>Quick Donate</span>
-                  </motion.button>
+                  </button>
                 </div>
 
               </div>
-            </motion.div>
+            </div>
           )}
 
         </div>

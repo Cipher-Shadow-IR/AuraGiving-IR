@@ -1,4 +1,4 @@
-@import url("https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap");
 
 @tailwind base;
 @tailwind components;
@@ -6,79 +6,65 @@
 
 @layer base {
   body {
-    @apply bg-[#070a13] text-slate-100 antialiased selection:bg-emerald-500/30 selection:text-emerald-300;
-    font-family: 'Plus Jakarta Sans', sans-serif;
+    @apply bg-[#090A0F] text-[#F3F4F6] antialiased selection:bg-emerald-500/20 selection:text-emerald-400;
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
   }
 
   h1, h2, h3, h4, h5, h6 {
-    font-family: 'Outfit', 'Plus Jakarta Sans', sans-serif;
+    @apply tracking-tight text-white font-semibold;
   }
 }
 
-/* Glassmorphic utilities */
-.glass-panel {
-  background: rgba(15, 23, 42, 0.65);
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
-  border: 1px solid rgba(255, 255, 255, 0.08);
-}
-
-.glass-card {
-  background: linear-gradient(135deg, rgba(255, 255, 255, 0.04) 0%, rgba(255, 255, 255, 0.01) 100%);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
+/* Minimalist high-trust panels */
+.surface-panel {
+  background: #12151C;
   border: 1px solid rgba(255, 255, 255, 0.07);
 }
 
-.glass-card:hover {
-  border-color: rgba(16, 185, 129, 0.3);
-  box-shadow: 0 12px 32px -4px rgba(0, 0, 0, 0.5), 0 0 20px -2px rgba(16, 185, 129, 0.15);
+.surface-card {
+  background: #12151C;
+  border: 1px solid rgba(255, 255, 255, 0.07);
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-.glass-input {
-  background: rgba(15, 23, 42, 0.6);
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  backdrop-filter: blur(8px);
+.surface-card:hover {
+  border-color: rgba(255, 255, 255, 0.15);
+  background: #161A23;
 }
 
-.glass-input:focus {
-  border-color: rgba(16, 185, 129, 0.5);
-  box-shadow: 0 0 0 3px rgba(16, 185, 129, 0.15);
+.surface-input {
+  background: #0D0F15;
+  border: 1px solid rgba(255, 255, 255, 0.09);
+  color: #F3F4F6;
+  transition: border-color 0.15s ease, box-shadow 0.15s ease;
 }
 
-/* Gradient text helpers */
-.text-gradient-emerald {
-  @apply bg-clip-text text-transparent bg-gradient-to-r from-emerald-400 via-teal-300 to-cyan-400;
+.surface-input:focus {
+  border-color: #10B981;
+  outline: none;
+  box-shadow: 0 0 0 1px #10B981;
 }
 
-.text-gradient-aurora {
-  @apply bg-clip-text text-transparent bg-gradient-to-r from-teal-300 via-emerald-400 to-amber-300;
-}
-
-.text-gradient-sunset {
-  @apply bg-clip-text text-transparent bg-gradient-to-r from-amber-400 via-rose-400 to-purple-400;
-}
-
-/* Custom Scrollbar */
+/* Custom Minimalist Scrollbar */
 ::-webkit-scrollbar {
-  width: 8px;
-  height: 8px;
+  width: 6px;
+  height: 6px;
 }
 
 ::-webkit-scrollbar-track {
-  background: #070a13;
+  background: #090A0F;
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #1e293b;
-  border-radius: 4px;
+  background: #1E232F;
+  border-radius: 3px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: #334155;
+  background: #2D3546;
 }
 
 input[type="date"]::-webkit-calendar-picker-indicator {
   cursor: pointer;
-  filter: invert(0.85);
+  filter: invert(0.8);
 }

@@ -1,22 +1,16 @@
 import React, { useState } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
 import { 
   X, 
   ChevronRight, 
   ChevronLeft, 
-  Sparkles, 
   ShieldCheck, 
   Wallet, 
   Heart, 
   Zap, 
   Layers, 
-  CheckCircle2, 
-  Eye, 
-  ArrowRight, 
+  Check, 
   Coins, 
-  ExternalLink,
-  Flame,
-  Award
+  ExternalLink
 } from 'lucide-react';
 import confetti from 'canvas-confetti';
 import { useNavigate } from 'react-router-dom';
@@ -24,33 +18,31 @@ import { useNavigate } from 'react-router-dom';
 const TUTORIAL_STEPS = [
   {
     id: 1,
-    badge: "The Problem & Solution",
-    title: "Why Web3 Charity?",
-    subtitle: "Zero Middlemen • 100% Direct Payout • Absolute Transparency",
-    icon: Zap,
-    color: "from-emerald-500 to-teal-400",
+    badge: "Architecture",
+    title: "1. The Non-Custodial Model",
+    subtitle: "Direct on-chain execution with zero middleman deductions",
     content: (
-      <div className="space-y-4 text-xs sm:text-sm">
+      <div className="space-y-4 text-xs">
         <p className="text-slate-300 leading-relaxed">
-          Traditional donation platforms often charge <span className="text-rose-400 font-bold">10%–30% in administrative cuts</span>, delay payouts by weeks, and obscure fund allocation.
+          Traditional donation systems charge <span className="text-rose-400 font-mono font-medium">10%–30% in operational cuts</span> and hold funds in centralized bank accounts for weeks.
         </p>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-2">
-          <div className="p-4 rounded-2xl bg-rose-950/20 border border-rose-500/20 space-y-1.5">
-            <span className="text-xs font-bold text-rose-400 uppercase tracking-wider">Traditional Charities</span>
-            <ul className="space-y-1 text-slate-400 text-xs">
-              <li>❌ High intermediary processing cuts</li>
-              <li>❌ Opaque fund routing & custody</li>
-              <li>❌ Slow multi-week disbursements</li>
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-1">
+          <div className="p-3.5 rounded-lg bg-rose-950/10 border border-rose-500/20 space-y-1.5">
+            <span className="font-semibold text-rose-400 text-[11px] uppercase tracking-wider">Traditional Platforms</span>
+            <ul className="space-y-1 text-slate-400">
+              <li>• Intermediary platform fees</li>
+              <li>• Opaque accounting and slow releases</li>
+              <li>• Centralized custody risks</li>
             </ul>
           </div>
 
-          <div className="p-4 rounded-2xl bg-emerald-950/30 border border-emerald-500/30 space-y-1.5 shadow-lg shadow-emerald-950/40">
-            <span className="text-xs font-bold text-emerald-400 uppercase tracking-wider">AuraGiving Web3 DApp</span>
-            <ul className="space-y-1 text-emerald-200/90 text-xs">
-              <li>✅ <strong className="text-emerald-400">100%</strong> of funds sent to creator</li>
-              <li>✅ Ethereum smart contract routing</li>
-              <li>✅ Instant public transaction proof</li>
+          <div className="p-3.5 rounded-lg bg-emerald-950/20 border border-emerald-500/25 space-y-1.5">
+            <span className="font-semibold text-emerald-400 text-[11px] uppercase tracking-wider">AuraGiving Smart Contract</span>
+            <ul className="space-y-1 text-slate-300">
+              <li>• <strong>100%</strong> of funds sent to organizer</li>
+              <li>• Instant Ethereum EVM execution</li>
+              <li>• Publicly verifiable transactions</li>
             </ul>
           </div>
         </div>
@@ -59,40 +51,27 @@ const TUTORIAL_STEPS = [
   },
   {
     id: 2,
-    badge: "Getting Started",
-    title: "Connect Your Web3 Wallet",
-    subtitle: "Non-custodial access with MetaMask & Local / Testnet Chains",
-    icon: Wallet,
-    color: "from-cyan-500 to-blue-500",
+    badge: "Connectivity",
+    title: "2. Web3 Wallet Connection",
+    subtitle: "Non-custodial login via MetaMask and Ethereum networks",
     content: (
-      <div className="space-y-4 text-xs sm:text-sm">
+      <div className="space-y-3 text-xs">
         <p className="text-slate-300 leading-relaxed">
-          AuraGiving requires no email signups or passwords. You interact directly through your decentralized Ethereum wallet (e.g. MetaMask).
+          No passwords or email accounts required. Connect directly with your browser wallet.
         </p>
 
-        <div className="p-4 rounded-2xl bg-white/[0.03] border border-white/[0.08] space-y-3">
-          <div className="flex items-center gap-3">
-            <div className="w-8 h-8 rounded-xl bg-cyan-500/20 text-cyan-400 flex items-center justify-center font-bold">1</div>
-            <div>
-              <p className="font-bold text-white text-xs">Install MetaMask Extension</p>
-              <p className="text-[11px] text-slate-400">Available on Chrome, Brave, Firefox, and Edge.</p>
-            </div>
+        <div className="p-3.5 rounded-lg bg-[#0D0F15] border border-white/[0.06] space-y-2.5 font-mono">
+          <div className="flex items-center gap-2 text-slate-300">
+            <span className="text-emerald-400">01</span>
+            <span>MetaMask browser extension</span>
           </div>
-
-          <div className="flex items-center gap-3">
-            <div className="w-8 h-8 rounded-xl bg-emerald-500/20 text-emerald-400 flex items-center justify-center font-bold">2</div>
-            <div>
-              <p className="font-bold text-white text-xs">Connect to Network</p>
-              <p className="text-[11px] text-slate-400">Switch to <span className="text-emerald-400 font-mono">Local Hardhat (RPC 8545)</span> or Sepolia Testnet with 1 click.</p>
-            </div>
+          <div className="flex items-center gap-2 text-slate-300">
+            <span className="text-emerald-400">02</span>
+            <span>Switch to Local Hardhat (RPC 8545) or Sepolia</span>
           </div>
-
-          <div className="flex items-center gap-3">
-            <div className="w-8 h-8 rounded-xl bg-purple-500/20 text-purple-400 flex items-center justify-center font-bold">3</div>
-            <div>
-              <p className="font-bold text-white text-xs">Instant Balance Sync</p>
-              <p className="text-[11px] text-slate-400">Your ETH balance updates automatically on the top navigation bar.</p>
-            </div>
+          <div className="flex items-center gap-2 text-slate-300">
+            <span className="text-emerald-400">03</span>
+            <span>Automatic balance synchronization</span>
           </div>
         </div>
       </div>
@@ -100,94 +79,57 @@ const TUTORIAL_STEPS = [
   },
   {
     id: 3,
-    badge: "Making an Impact",
-    title: "Backing Causes with 1 Click",
-    subtitle: "Real-Time Impact Estimations & Direct Payable Execution",
-    icon: Heart,
-    color: "from-rose-500 to-amber-500",
+    badge: "Execution",
+    title: "3. Direct Payable Donations",
+    subtitle: "Smart contract routing with real-time goal metrics",
     content: (
-      <div className="space-y-4 text-xs sm:text-sm">
+      <div className="space-y-3 text-xs">
         <p className="text-slate-300 leading-relaxed">
-          Select any campaign card to view its story, backer leaderboard, and goal progress. Use quick preset buttons or custom ETH amounts to donate.
+          When you click "Donate", your ETH is routed directly to the beneficiary's address in the same transaction block (`payable(owner).call`).
         </p>
 
-        {/* Interactive Demo Tryout inside tutorial */}
-        <div className="p-4 rounded-2xl bg-gradient-to-r from-emerald-500/10 via-teal-500/10 to-cyan-500/10 border border-emerald-500/20 space-y-3">
-          <div className="flex items-center justify-between">
-            <span className="text-xs font-bold text-emerald-300">Try Interactive Donation Preview:</span>
-            <button
-              onClick={() => {
-                confetti({
-                  particleCount: 100,
-                  spread: 60,
-                  origin: { y: 0.5 }
-                });
-              }}
-              className="px-2.5 py-1 rounded-lg bg-emerald-500 text-slate-950 text-[10px] font-black uppercase hover:opacity-90 transition-all flex items-center gap-1 shadow"
-            >
-              <Sparkles className="w-3 h-3" />
-              <span>Test Confetti</span>
-            </button>
-          </div>
-
-          <div className="p-3 rounded-xl bg-black/40 border border-white/10 flex items-center justify-between text-xs font-mono">
-            <span className="text-slate-300">Smart Contract Call:</span>
-            <span className="text-emerald-400 font-bold">donateToCampaign(id) {`{value: 0.5 ETH}`}</span>
-          </div>
+        <div className="p-3 rounded-lg bg-white/[0.02] border border-white/[0.06] flex items-center justify-between font-mono">
+          <span className="text-slate-400">Test Execution Simulation:</span>
+          <button
+            onClick={() => {
+              confetti({
+                particleCount: 50,
+                spread: 50,
+                origin: { y: 0.6 },
+                colors: ['#10b981', '#34d399', '#38bdf8'],
+              });
+            }}
+            className="px-2.5 py-1 rounded bg-emerald-400 text-slate-950 text-[11px] font-semibold hover:bg-emerald-300 transition-colors"
+          >
+            Trigger Celebration
+          </button>
         </div>
       </div>
     )
   },
   {
     id: 4,
-    badge: "Creator Studio",
-    title: "Launch Your Own Cause",
-    subtitle: "Live Real-Time Card Preview & 1-Click Curated Presets",
-    icon: Sparkles,
-    color: "from-amber-500 to-emerald-500",
+    badge: "Publishing",
+    title: "4. Deploying a Mission",
+    subtitle: "Transparent goal setup, live preview, and on-chain registry",
     content: (
-      <div className="space-y-4 text-xs sm:text-sm">
+      <div className="space-y-3 text-xs">
         <p className="text-slate-300 leading-relaxed">
-          Need funding for a medical emergency, environmental initiative, or community project? Deploy your campaign directly to the Ethereum blockchain.
+          Anyone can launch a charitable initiative with verified target goals and deadlines recorded immutably on Ethereum.
         </p>
 
-        <div className="space-y-2">
-          <div className="flex items-start gap-2 text-xs text-slate-300">
-            <CheckCircle2 className="w-4 h-4 text-emerald-400 flex-shrink-0 mt-0.5" />
-            <span><strong>Real-Time Preview:</strong> See your card update live as you type the title, goal, and story.</span>
+        <div className="p-3.5 rounded-lg bg-[#0D0F15] border border-white/[0.06] space-y-1.5">
+          <div className="flex items-center gap-1.5 text-slate-300 font-medium">
+            <Check className="w-3.5 h-3.5 text-emerald-400" />
+            <span>Split-screen realtime card preview</span>
           </div>
-          <div className="flex items-start gap-2 text-xs text-slate-300">
-            <CheckCircle2 className="w-4 h-4 text-emerald-400 flex-shrink-0 mt-0.5" />
-            <span><strong>Royalty-Free Image Library:</strong> Pick curated high-resolution covers with 1-click.</span>
+          <div className="flex items-center gap-1.5 text-slate-300 font-medium">
+            <Check className="w-3.5 h-3.5 text-emerald-400" />
+            <span>Royalty-free curated cover image presets</span>
           </div>
-          <div className="flex items-start gap-2 text-xs text-slate-300">
-            <CheckCircle2 className="w-4 h-4 text-emerald-400 flex-shrink-0 mt-0.5" />
-            <span><strong>Owner Management:</strong> You have full rights to manage or delete your campaign on-chain.</span>
-          </div>
-        </div>
-      </div>
-    )
-  },
-  {
-    id: 5,
-    badge: "Trust & Verification",
-    title: "Auditing on the Blockchain",
-    subtitle: "Public Transaction Hashes • Donator Hall of Fame",
-    icon: ShieldCheck,
-    color: "from-purple-500 to-cyan-500",
-    content: (
-      <div className="space-y-4 text-xs sm:text-sm">
-        <p className="text-slate-300 leading-relaxed">
-          Every donation is an immutable Ethereum transaction. You can verify proof of giving anytime by searching the transaction hash or wallet address on block explorers.
-        </p>
-
-        <div className="p-4 rounded-2xl bg-white/[0.03] border border-white/[0.08] flex items-center justify-between gap-4">
-          <div className="flex items-center gap-3">
-            <Award className="w-8 h-8 text-amber-400 flex-shrink-0" />
-            <div>
-              <p className="font-bold text-white text-xs">Donator Hall of Fame</p>
-              <p className="text-[11px] text-slate-400">Top supporters receive ranked crowns (🥇, 🥈, 🥉) on the campaign page.</p>
-            </div>
+          <div className="flex items-center gap-1.5 text-slate-300 font-medium">
+            <Check className="w-3.5 h-3.5 text-emerald-400" />
+            <span>Organizer campaign deletion controls</span>
           </div>
         </div>
       </div>
@@ -214,121 +156,72 @@ const TutorialModal = ({ isOpen, onClose }) => {
     if (!isFirst) setCurrentStep((prev) => prev - 1);
   };
 
-  const handleStartCause = () => {
-    onClose();
-    navigate('/create-campaign');
-  };
-
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80 backdrop-blur-xl animate-in fade-in duration-200">
-      <motion.div
-        initial={{ opacity: 0, scale: 0.95, y: 20 }}
-        animate={{ opacity: 1, scale: 1, y: 0 }}
-        exit={{ opacity: 0, scale: 0.95, y: 20 }}
-        transition={{ type: "spring", duration: 0.5, bounce: 0.2 }}
-        className="relative w-full max-w-2xl rounded-3xl bg-[#0f172a] border border-white/[0.12] shadow-2xl p-6 sm:p-8 overflow-hidden"
-      >
-        {/* Ambient Glow */}
-        <div className="absolute -top-20 -right-20 w-64 h-64 bg-emerald-500/15 rounded-full blur-3xl pointer-events-none -z-10" />
-
+    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/75 backdrop-blur-sm animate-in fade-in duration-150">
+      <div className="relative w-full max-w-xl rounded-xl bg-[#12151C] border border-white/[0.08] shadow-modal p-6 space-y-6">
+        
         {/* Close Button */}
         <button
           onClick={onClose}
-          className="absolute top-5 right-5 w-8 h-8 rounded-full bg-white/[0.05] hover:bg-white/[0.1] border border-white/[0.08] flex items-center justify-center text-slate-400 hover:text-white transition-colors"
+          className="absolute top-4 right-4 text-slate-400 hover:text-white transition-colors"
         >
           <X className="w-4 h-4" />
         </button>
 
-        {/* Progress Bar Header */}
-        <div className="space-y-2 mb-6">
+        {/* Progress Header */}
+        <div className="space-y-2">
           <div className="flex items-center justify-between text-xs">
-            <span className="font-bold text-emerald-400 uppercase tracking-widest text-[11px]">
-              Step {currentStep + 1} of {TUTORIAL_STEPS.length}
+            <span className="font-mono text-emerald-400 font-medium text-[11px]">
+              {step.badge} • Step {currentStep + 1} of {TUTORIAL_STEPS.length}
             </span>
-            <span className="text-slate-400 font-semibold">{step.badge}</span>
           </div>
 
-          <div className="grid grid-cols-5 gap-1.5">
+          <div className="grid grid-cols-4 gap-1.5">
             {TUTORIAL_STEPS.map((s, idx) => (
               <div
                 key={s.id}
                 onClick={() => setCurrentStep(idx)}
-                className={`h-1.5 rounded-full cursor-pointer transition-all duration-300 ${
-                  idx === currentStep
-                    ? 'bg-gradient-to-r from-emerald-400 to-cyan-400 shadow-sm shadow-emerald-500/50'
-                    : idx < currentStep
-                    ? 'bg-emerald-600'
-                    : 'bg-white/[0.08]'
+                className={`h-1 rounded-full cursor-pointer transition-colors ${
+                  idx <= currentStep ? 'bg-emerald-400' : 'bg-white/[0.06]'
                 }`}
               />
             ))}
           </div>
         </div>
 
-        {/* Animated Step Content */}
-        <AnimatePresence mode="wait">
-          <motion.div
-            key={currentStep}
-            initial={{ opacity: 0, x: 20 }}
-            animate={{ opacity: 1, x: 0 }}
-            exit={{ opacity: 0, x: -20 }}
-            transition={{ duration: 0.25 }}
-            className="space-y-5 min-h-[260px]"
-          >
-            {/* Step Icon & Header */}
-            <div className="flex items-start gap-4">
-              <div className={`w-12 h-12 rounded-2xl bg-gradient-to-tr ${step.color} p-0.5 shadow-lg flex-shrink-0`}>
-                <div className="w-full h-full bg-[#0d1527] rounded-[14px] flex items-center justify-center text-white">
-                  <step.icon className="w-6 h-6 text-emerald-300" />
-                </div>
-              </div>
+        {/* Content */}
+        <div className="space-y-4 min-h-[220px]">
+          <div>
+            <h3 className="text-base font-semibold text-white">
+              {step.title}
+            </h3>
+            <p className="text-xs text-slate-400 mt-0.5 font-mono">
+              {step.subtitle}
+            </p>
+          </div>
 
-              <div>
-                <h3 className="font-display font-black text-2xl text-white">
-                  {step.title}
-                </h3>
-                <p className="text-xs text-slate-400 mt-0.5">
-                  {step.subtitle}
-                </p>
-              </div>
-            </div>
+          <div>{step.content}</div>
+        </div>
 
-            {/* Custom Step Content Body */}
-            <div>{step.content}</div>
-          </motion.div>
-        </AnimatePresence>
-
-        {/* Modal Bottom Actions */}
-        <div className="pt-6 mt-6 border-t border-white/[0.08] flex items-center justify-between gap-4">
+        {/* Actions */}
+        <div className="pt-4 border-t border-white/[0.06] flex items-center justify-between">
           <button
             onClick={handlePrev}
             disabled={isFirst}
-            className="inline-flex items-center gap-1.5 px-4 py-2.5 rounded-xl text-xs font-semibold text-slate-300 hover:text-white bg-white/[0.04] hover:bg-white/[0.08] border border-white/[0.08] transition-all disabled:opacity-30 disabled:pointer-events-none"
+            className="px-3 py-1.5 rounded-lg text-xs font-medium text-slate-400 hover:text-white disabled:opacity-30 disabled:pointer-events-none"
           >
-            <ChevronLeft className="w-4 h-4" />
-            <span>Previous</span>
+            Previous
           </button>
 
-          <div className="flex items-center gap-2">
-            {isLast && (
-              <button
-                onClick={handleStartCause}
-                className="px-4 py-2.5 rounded-xl text-xs font-bold text-slate-200 bg-white/[0.08] hover:bg-white/[0.12] border border-white/[0.1] transition-all"
-              >
-                Start a Cause
-              </button>
-            )}
-
-            <button
-              onClick={handleNext}
-              className="inline-flex items-center gap-2 px-6 py-2.5 rounded-xl text-xs font-bold text-slate-950 bg-gradient-to-r from-emerald-400 to-teal-300 hover:opacity-95 shadow-lg shadow-emerald-500/25 transition-all active:scale-95"
-            >
-              <span>{isLast ? "Done, Let's Explore" : "Next Step"}</span>
-              <ChevronRight className="w-4 h-4" />
-            </button>
-          </div>
+          <button
+            onClick={handleNext}
+            className="px-4 py-1.5 rounded-lg text-xs font-medium text-slate-950 bg-emerald-400 hover:bg-emerald-300 transition-colors"
+          >
+            {isLast ? "Close Guide" : "Next Step"}
+          </button>
         </div>
-      </motion.div>
+
+      </div>
     </div>
   );
 };

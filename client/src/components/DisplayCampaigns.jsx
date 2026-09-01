@@ -1,18 +1,17 @@
 import React, { useState, useMemo } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
 import { 
   Search, 
   SlidersHorizontal, 
-  PlusCircle, 
-  Layers, 
-  X 
+  Plus, 
+  X,
+  Inbox
 } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 import FundCard from './FundCard';
 import { daysLeft } from '../utils';
 
 const CATEGORIES = [
-  "All Causes",
+  "All",
   "Emergency Relief",
   "Environment & Nature",
   "Healthcare & Medicine",
@@ -24,7 +23,7 @@ const CATEGORIES = [
 const DisplayCampaigns = ({ title, isLoading, campaigns = [] }) => {
   const navigate = useNavigate();
   const [searchQuery, setSearchQuery] = useState('');
-  const [selectedCategory, setSelectedCategory] = useState('All Causes');
+  const [selectedCategory, setSelectedCategory] = useState('All');
   const [sortBy, setSortBy] = useState('most_funded');
   const [statusFilter, setStatusFilter] = useState('all');
 
@@ -39,9 +38,9 @@ const DisplayCampaigns = ({ title, isLoading, campaigns = [] }) => {
         c.category?.toLowerCase().includes(query);
 
       const matchCategory =
-        selectedCategory === 'All Causes' ||
+        selectedCategory === 'All' ||
         c.category === selectedCategory ||
-        (!c.category && selectedCategory === 'All Causes');
+        (!c.category && selectedCategory === 'All');
 
       const remaining = Number(daysLeft(c.deadline));
       const percentage = (parseFloat(c.amountCollected) * 100) / parseFloat(c.target);
@@ -74,42 +73,36 @@ const DisplayCampaigns = ({ title, isLoading, campaigns = [] }) => {
   }, [campaigns, searchQuery, selectedCategory, sortBy, statusFilter]);
 
   return (
-    <div id="explore-section" className="space-y-8 pb-16">
+    <div id="explore-section" className="space-y-6 pb-20">
       
-      {/* Header */}
-      <div className="flex flex-col md:flex-row md:items-end justify-between gap-4 border-b border-white/[0.08] pb-6">
+      {/* Section Header & Search / Sort Controls */}
+      <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 pt-4">
         <div>
-          <div className="flex items-center gap-2 mb-2">
-            <span className="w-2.5 h-2.5 rounded-full bg-emerald-400"></span>
-            <span className="text-xs uppercase font-bold tracking-widest text-emerald-400">
-              Verified Causes
-            </span>
-          </div>
-          <h2 className="font-display font-black text-3xl sm:text-4xl text-white tracking-tight">
-            {title || "Explore Active Causes"}
+          <h2 className="text-xl sm:text-2xl font-semibold tracking-tight text-white">
+            {title || "Active Campaigns"}
           </h2>
-          <p className="text-sm text-slate-400 mt-1">
-            Discover and back decentralized charitable initiatives worldwide.
+          <p className="text-xs sm:text-sm text-slate-400 mt-0.5">
+            Transparent decentralized charity verified on Ethereum.
           </p>
         </div>
 
-        {/* Quick Search & Sort Bar */}
-        <div className="flex flex-wrap items-center gap-3">
-          <div className="relative flex-1 sm:w-72">
-            <Search className="absolute left-3.5 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-400" />
+        {/* Search & Sort */}
+        <div className="flex items-center gap-2.5">
+          <div className="relative w-full sm:w-64">
+            <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-3.5 h-3.5 text-slate-400" />
             <input
               type="text"
-              placeholder="Search by title, cause, or wallet..."
+              placeholder="Search causes..."
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
-              className="w-full pl-10 pr-9 py-2.5 rounded-2xl bg-white/[0.04] border border-white/[0.1] text-sm text-white placeholder:text-slate-500 focus:outline-none focus:border-emerald-500/50 focus:bg-white/[0.06] transition-all backdrop-blur-md"
+              className="w-full pl-9 pr-8 py-1.5 rounded-lg bg-[#12151C] border border-white/[0.08] text-xs text-white placeholder:text-slate-500 focus:outline-none focus:border-emerald-500 transition-colors"
             />
             {searchQuery && (
               <button
                 onClick={() => setSearchQuery('')}
-                className="absolute right-3 top-1/2 -translate-y-1/2 text-slate-400 hover:text-white"
+                className="absolute right-2.5 top-1/2 -translate-y-1/2 text-slate-400 hover:text-white"
               >
-                <X className="w-4 h-4" />
+                <X className="w-3.5 h-3.5" />
               </button>
             )}
           </div>
@@ -118,144 +111,119 @@ const DisplayCampaigns = ({ title, isLoading, campaigns = [] }) => {
             <select
               value={sortBy}
               onChange={(e) => setSortBy(e.target.value)}
-              className="appearance-none bg-white/[0.04] border border-white/[0.1] rounded-2xl pl-4 pr-10 py-2.5 text-xs font-semibold text-slate-300 focus:outline-none focus:border-emerald-500/50 cursor-pointer backdrop-blur-md"
+              className="appearance-none bg-[#12151C] border border-white/[0.08] rounded-lg pl-3 pr-8 py-1.5 text-xs text-slate-300 focus:outline-none focus:border-emerald-500 cursor-pointer"
             >
-              <option value="most_funded" className="bg-[#0f172a] text-white">Most Funded</option>
-              <option value="newest" className="bg-[#0f172a] text-white">Newest First</option>
-              <option value="expiring_soon" className="bg-[#0f172a] text-white">Ending Soon</option>
-              <option value="target_high" className="bg-[#0f172a] text-white">Highest Goal</option>
+              <option value="most_funded" className="bg-[#090A0F] text-white">Most Funded</option>
+              <option value="newest" className="bg-[#090A0F] text-white">Newest First</option>
+              <option value="expiring_soon" className="bg-[#090A0F] text-white">Ending Soon</option>
+              <option value="target_high" className="bg-[#090A0F] text-white">Highest Goal</option>
             </select>
-            <SlidersHorizontal className="absolute right-3.5 top-1/2 -translate-y-1/2 w-3.5 h-3.5 text-slate-400 pointer-events-none" />
+            <SlidersHorizontal className="absolute right-2.5 top-1/2 -translate-y-1/2 w-3 h-3 text-slate-400 pointer-events-none" />
           </div>
         </div>
       </div>
 
-      {/* Category Pills Bar */}
-      <div className="flex items-center gap-2 overflow-x-auto pb-2 scrollbar-none">
+      {/* Sleek Segmented Category Row */}
+      <div className="flex items-center gap-1.5 overflow-x-auto pb-2 border-b border-white/[0.06] scrollbar-none">
         {CATEGORIES.map((cat) => {
           const isSelected = selectedCategory === cat;
           return (
-            <motion.button
+            <button
               key={cat}
-              whileTap={{ scale: 0.95 }}
               onClick={() => setSelectedCategory(cat)}
-              className={`px-4 py-2 rounded-2xl text-xs font-bold whitespace-nowrap transition-all duration-200 ${
+              className={`px-3 py-1 rounded-md text-xs font-medium whitespace-nowrap transition-colors ${
                 isSelected
-                  ? 'bg-emerald-500 text-slate-950 shadow-md shadow-emerald-500/25'
-                  : 'bg-white/[0.03] text-slate-300 hover:bg-white/[0.08] hover:text-white border border-white/[0.06]'
+                  ? 'bg-white/[0.1] text-white font-semibold'
+                  : 'text-slate-400 hover:text-slate-200 hover:bg-white/[0.03]'
               }`}
             >
               {cat}
-            </motion.button>
+            </button>
           );
         })}
       </div>
 
-      {/* Status Filter Tabs */}
-      <div className="flex items-center justify-between flex-wrap gap-4 text-xs font-semibold text-slate-400">
-        <div className="flex items-center gap-1.5 bg-white/[0.03] p-1 rounded-xl border border-white/[0.06]">
+      {/* Subfilter & Count */}
+      <div className="flex items-center justify-between text-xs text-slate-400">
+        <div className="flex items-center gap-2">
           <button
             onClick={() => setStatusFilter('all')}
-            className={`px-3 py-1.5 rounded-lg transition-all ${
-              statusFilter === 'all' ? 'bg-white/[0.1] text-white font-bold' : 'hover:text-white'
-            }`}
+            className={`transition-colors ${statusFilter === 'all' ? 'text-white font-medium underline underline-offset-4' : 'hover:text-slate-300'}`}
           >
             All ({campaigns.length})
           </button>
+          <span className="text-slate-600">•</span>
           <button
             onClick={() => setStatusFilter('active')}
-            className={`px-3 py-1.5 rounded-lg transition-all ${
-              statusFilter === 'active' ? 'bg-emerald-500/20 text-emerald-300 font-bold' : 'hover:text-white'
-            }`}
+            className={`transition-colors ${statusFilter === 'active' ? 'text-white font-medium underline underline-offset-4' : 'hover:text-slate-300'}`}
           >
             Active
           </button>
+          <span className="text-slate-600">•</span>
           <button
             onClick={() => setStatusFilter('urgent')}
-            className={`px-3 py-1.5 rounded-lg transition-all ${
-              statusFilter === 'urgent' ? 'bg-amber-500/20 text-amber-300 font-bold' : 'hover:text-white'
-            }`}
+            className={`transition-colors ${statusFilter === 'urgent' ? 'text-white font-medium underline underline-offset-4' : 'hover:text-slate-300'}`}
           >
-            Urgent (≤ 7d)
-          </button>
-          <button
-            onClick={() => setStatusFilter('completed')}
-            className={`px-3 py-1.5 rounded-lg transition-all ${
-              statusFilter === 'completed' ? 'bg-cyan-500/20 text-cyan-300 font-bold' : 'hover:text-white'
-            }`}
-          >
-            Funded
+            Ending Soon (≤7d)
           </button>
         </div>
 
-        <p className="text-slate-400">
-          Showing <span className="text-white font-bold">{filteredCampaigns.length}</span> cause{filteredCampaigns.length === 1 ? '' : 's'}
-        </p>
+        <span className="font-mono text-slate-500 text-[11px]">
+          Showing {filteredCampaigns.length}
+        </span>
       </div>
 
-      {/* Campaign Cards Grid with AnimatePresence */}
+      {/* Grid */}
       {isLoading ? (
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
           {[1, 2, 3, 4, 5, 6].map((i) => (
             <div
               key={i}
-              className="rounded-3xl bg-white/[0.02] border border-white/[0.06] h-96 p-4 space-y-4 animate-pulse"
+              className="rounded-xl bg-[#12151C] border border-white/[0.06] h-80 p-4 space-y-3 animate-pulse"
             >
-              <div className="h-44 bg-white/[0.05] rounded-2xl w-full" />
-              <div className="h-4 bg-white/[0.05] rounded w-3/4" />
-              <div className="h-3 bg-white/[0.03] rounded w-full" />
-              <div className="h-3 bg-white/[0.03] rounded w-2/3" />
-              <div className="h-2 bg-white/[0.05] rounded-full w-full mt-4" />
+              <div className="h-36 bg-white/[0.04] rounded-lg w-full" />
+              <div className="h-3.5 bg-white/[0.04] rounded w-3/4" />
+              <div className="h-2.5 bg-white/[0.02] rounded w-full" />
+              <div className="h-1.5 bg-white/[0.04] rounded-full w-full mt-4" />
             </div>
           ))}
         </div>
       ) : filteredCampaigns.length > 0 ? (
-        <motion.div 
-          layout
-          className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6"
-        >
-          <AnimatePresence>
-            {filteredCampaigns.map((campaign, idx) => (
-              <FundCard key={campaign.pId ?? idx} {...campaign} />
-            ))}
-          </AnimatePresence>
-        </motion.div>
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
+          {filteredCampaigns.map((campaign, idx) => (
+            <FundCard key={campaign.pId ?? idx} {...campaign} />
+          ))}
+        </div>
       ) : (
-        <motion.div
-          initial={{ opacity: 0, scale: 0.95 }}
-          animate={{ opacity: 1, scale: 1 }}
-          className="p-12 text-center rounded-3xl bg-white/[0.02] border border-white/[0.06] backdrop-blur-xl max-w-lg mx-auto space-y-4 my-8"
-        >
-          <div className="w-16 h-16 rounded-3xl bg-emerald-500/10 border border-emerald-500/20 mx-auto flex items-center justify-center text-emerald-400">
-            <Layers className="w-8 h-8" />
-          </div>
-          <h3 className="font-display font-bold text-xl text-white">
+        <div className="p-12 text-center rounded-xl bg-[#12151C] border border-white/[0.06] max-w-md mx-auto space-y-3 my-6">
+          <Inbox className="w-8 h-8 text-slate-500 mx-auto" />
+          <h3 className="text-sm font-semibold text-white">
             No causes match your filter
           </h3>
-          <p className="text-sm text-slate-400 leading-relaxed">
-            Try adjusting your search keywords, switching categories, or start the first campaign in this sector.
+          <p className="text-xs text-slate-400 leading-relaxed">
+            Try adjusting your search criteria or create the first campaign in this category.
           </p>
 
-          <div className="flex items-center justify-center gap-3 pt-2">
+          <div className="flex items-center justify-center gap-2 pt-2">
             <button
               onClick={() => {
                 setSearchQuery('');
-                setSelectedCategory('All Causes');
+                setSelectedCategory('All');
                 setStatusFilter('all');
               }}
-              className="px-4 py-2 rounded-xl text-xs font-semibold bg-white/[0.06] text-white hover:bg-white/[0.1] transition-all"
+              className="px-3 py-1.5 rounded-lg text-xs font-medium bg-white/[0.04] text-slate-300 hover:bg-white/[0.08] transition-colors"
             >
-              Reset Filters
+              Reset
             </button>
             <button
               onClick={() => navigate('/create-campaign')}
-              className="px-4 py-2 rounded-xl text-xs font-bold text-slate-950 bg-gradient-to-r from-emerald-400 to-teal-300 hover:opacity-95 transition-all shadow-md shadow-emerald-500/20 flex items-center gap-1.5"
+              className="px-3 py-1.5 rounded-lg text-xs font-medium text-slate-950 bg-emerald-400 hover:bg-emerald-300 transition-colors flex items-center gap-1"
             >
-              <PlusCircle className="w-3.5 h-3.5" />
-              <span>Launch a Cause</span>
+              <Plus className="w-3.5 h-3.5" />
+              <span>Create Cause</span>
             </button>
           </div>
-        </motion.div>
+        </div>
       )}
 
     </div>

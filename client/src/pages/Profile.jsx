@@ -1,19 +1,12 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import { 
-  User, 
   Wallet, 
-  Heart, 
-  Sparkles, 
-  Coins, 
-  Bookmark, 
-  PlusCircle, 
+  Plus, 
   ExternalLink, 
   Copy, 
   Check, 
-  Award, 
-  Layers,
-  ArrowUpRight
+  Inbox
 } from 'lucide-react';
 import { useStateContext } from '../context';
 import { FundCard } from '../components';
@@ -53,7 +46,6 @@ const Profile = () => {
       setCreatedCampaigns(created || []);
       setBackedCampaigns(backed || []);
 
-      // Filter saved campaigns based on bookmarks
       const saved = (all || []).filter((c) => bookmarks.includes(c.pId));
       setSavedCampaigns(saved);
     } catch (err) {
@@ -71,11 +63,10 @@ const Profile = () => {
     if (!address) return;
     navigator.clipboard.writeText(address);
     setCopied(true);
-    showToast("Address copied to clipboard! 📋", "info");
+    showToast("Address copied", "info");
     setTimeout(() => setCopied(false), 2000);
   };
 
-  // Metrics calculation
   const totalRaised = createdCampaigns.reduce(
     (acc, c) => acc + (parseFloat(c.amountCollected) || 0),
     0
@@ -83,21 +74,21 @@ const Profile = () => {
 
   if (!address) {
     return (
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 text-center space-y-6">
-        <div className="w-20 h-20 rounded-3xl bg-emerald-500/10 border border-emerald-500/20 mx-auto flex items-center justify-center text-emerald-400">
-          <Wallet className="w-10 h-10" />
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 text-center space-y-4">
+        <div className="w-12 h-12 rounded-xl bg-[#12151C] border border-white/[0.08] mx-auto flex items-center justify-center text-slate-400">
+          <Wallet className="w-6 h-6" />
         </div>
-        <h2 className="font-display font-black text-3xl text-white">
-          Connect Your Wallet to Access Your Impact Hub
+        <h2 className="text-xl font-semibold text-white">
+          Connect Your Wallet
         </h2>
-        <p className="text-sm text-slate-400 max-w-md mx-auto leading-relaxed">
-          Track your created causes, donation history, and saved bookmarks directly from your Ethereum wallet.
+        <p className="text-xs text-slate-400 max-w-sm mx-auto leading-relaxed">
+          Access your personal organizer dashboard, contribution history, and bookmarked causes.
         </p>
         <button
           onClick={connectWallet}
-          className="inline-flex items-center gap-2 px-8 py-3.5 rounded-2xl font-bold text-slate-950 bg-gradient-to-r from-emerald-400 via-teal-300 to-cyan-400 hover:opacity-95 shadow-xl shadow-emerald-500/25 transition-all"
+          className="inline-flex items-center gap-2 px-4 py-2 rounded-lg text-xs font-semibold text-slate-950 bg-emerald-400 hover:bg-emerald-300 transition-colors"
         >
-          <Wallet className="w-5 h-5" />
+          <Wallet className="w-4 h-4" />
           <span>Connect MetaMask</span>
         </button>
       </div>
@@ -105,91 +96,69 @@ const Profile = () => {
   }
 
   return (
-    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-8">
+    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-6">
       
-      {/* Profile Banner */}
-      <div className="p-6 sm:p-8 rounded-3xl bg-gradient-to-r from-white/[0.04] via-white/[0.02] to-white/[0.04] border border-white/[0.08] backdrop-blur-2xl shadow-2xl relative overflow-hidden">
+      {/* Profile Overview Card */}
+      <div className="p-6 rounded-xl bg-[#12151C] border border-white/[0.08] space-y-6">
         
-        {/* Background Glow */}
-        <div className="absolute top-0 right-0 w-80 h-80 bg-emerald-500/10 rounded-full blur-3xl pointer-events-none -z-10" />
-
-        <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-6">
-          
-          <div className="flex items-center gap-4">
-            <div className="w-16 h-16 sm:w-20 sm:h-20 rounded-3xl bg-gradient-to-tr from-emerald-400 via-teal-300 to-cyan-400 p-0.5 shadow-xl shadow-emerald-500/20 flex-shrink-0">
-              <div className="w-full h-full bg-[#0d1527] rounded-[22px] flex items-center justify-center font-display font-black text-xl sm:text-2xl text-white">
-                {address.slice(2, 4).toUpperCase()}
-              </div>
-            </div>
-
-            <div className="space-y-1">
-              <div className="flex items-center gap-2">
-                <h1 className="font-display font-black text-xl sm:text-2xl text-white">
-                  Philanthropist Dashboard
-                </h1>
-                <span className="px-2.5 py-0.5 rounded-lg bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 text-xs font-bold flex items-center gap-1">
-                  <Award className="w-3 h-3" />
-                  <span>Level 1 Hero</span>
-                </span>
-              </div>
-
-              <div className="flex items-center gap-2 font-mono text-xs text-slate-300">
-                <span>{address.slice(0, 10)}...{address.slice(-8)}</span>
-                <button onClick={handleCopyAddress} className="text-slate-400 hover:text-white transition-colors">
-                  {copied ? <Check className="w-3.5 h-3.5 text-emerald-400" /> : <Copy className="w-3.5 h-3.5" />}
-                </button>
-                <span>•</span>
-                <a
-                  href={`${EXPLORER_URL}/address/${address}`}
-                  target="_blank"
-                  rel="noreferrer"
-                  className="text-emerald-400 hover:underline inline-flex items-center gap-0.5"
-                >
-                  <span>Explorer</span>
-                  <ExternalLink className="w-3 h-3" />
-                </a>
-              </div>
+        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+          <div className="space-y-1">
+            <h1 className="text-xl font-semibold text-white">
+              Organizer Dashboard
+            </h1>
+            <div className="flex items-center gap-2 font-mono text-xs text-slate-400">
+              <span>{address}</span>
+              <button onClick={handleCopyAddress} className="text-slate-400 hover:text-white">
+                {copied ? <Check className="w-3.5 h-3.5 text-emerald-400" /> : <Copy className="w-3.5 h-3.5" />}
+              </button>
+              <span>•</span>
+              <a
+                href={`${EXPLORER_URL}/address/${address}`}
+                target="_blank"
+                rel="noreferrer"
+                className="text-slate-400 hover:text-slate-200 inline-flex items-center gap-0.5"
+              >
+                <span>Explorer</span>
+                <ExternalLink className="w-3 h-3" />
+              </a>
             </div>
           </div>
 
-          <div className="flex items-center gap-3 w-full md:w-auto">
-            <Link
-              to="/create-campaign"
-              className="flex-1 md:flex-initial flex items-center justify-center gap-2 px-6 py-3 rounded-2xl font-bold text-slate-950 bg-gradient-to-r from-emerald-400 to-teal-300 hover:opacity-95 shadow-lg shadow-emerald-500/20 transition-all text-xs sm:text-sm"
-            >
-              <PlusCircle className="w-4 h-4" />
-              <span>Launch New Cause</span>
-            </Link>
-          </div>
-
+          <Link
+            to="/create-campaign"
+            className="inline-flex items-center justify-center gap-1.5 px-3.5 py-1.5 rounded-lg text-xs font-semibold text-slate-950 bg-emerald-400 hover:bg-emerald-300 transition-colors"
+          >
+            <Plus className="w-3.5 h-3.5" />
+            <span>New Cause</span>
+          </Link>
         </div>
 
-        {/* User Stats Grid */}
-        <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 pt-8 mt-8 border-t border-white/[0.08]">
-          <div className="space-y-1">
-            <span className="text-xs text-slate-400 font-medium">Wallet Balance</span>
-            <p className="font-display font-bold text-xl sm:text-2xl text-white font-mono">
-              {balance} <span className="text-xs font-normal text-emerald-400">ETH</span>
+        {/* 4-Metric Strip with Divider Lines */}
+        <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 pt-4 border-t border-white/[0.06]">
+          <div className="space-y-0.5">
+            <span className="text-xs text-slate-400">Balance</span>
+            <p className="font-mono font-semibold text-lg text-white">
+              {balance} <span className="text-xs font-normal text-slate-500 font-sans">ETH</span>
             </p>
           </div>
 
-          <div className="space-y-1">
-            <span className="text-xs text-slate-400 font-medium">Causes Launched</span>
-            <p className="font-display font-bold text-xl sm:text-2xl text-white">
+          <div className="space-y-0.5 sm:pl-4 sm:border-l sm:border-white/[0.06]">
+            <span className="text-xs text-slate-400">Created Causes</span>
+            <p className="font-mono font-semibold text-lg text-white">
               {createdCampaigns.length}
             </p>
           </div>
 
-          <div className="space-y-1">
-            <span className="text-xs text-slate-400 font-medium">Total ETH Raised</span>
-            <p className="font-display font-bold text-xl sm:text-2xl text-emerald-400 font-mono">
-              {totalRaised} <span className="text-xs font-normal text-slate-400">ETH</span>
+          <div className="space-y-0.5 sm:pl-4 sm:border-l sm:border-white/[0.06]">
+            <span className="text-xs text-slate-400">Raised Across Causes</span>
+            <p className="font-mono font-semibold text-lg text-emerald-400">
+              {totalRaised} <span className="text-xs font-normal text-slate-500 font-sans">ETH</span>
             </p>
           </div>
 
-          <div className="space-y-1">
-            <span className="text-xs text-slate-400 font-medium">Causes Supported</span>
-            <p className="font-display font-bold text-xl sm:text-2xl text-white">
+          <div className="space-y-0.5 sm:pl-4 sm:border-l sm:border-white/[0.06]">
+            <span className="text-xs text-slate-400">Causes Backed</span>
+            <p className="font-mono font-semibold text-lg text-white">
               {backedCampaigns.length}
             </p>
           </div>
@@ -197,70 +166,61 @@ const Profile = () => {
 
       </div>
 
-      {/* Tabs Navigation */}
-      <div className="flex items-center gap-2 border-b border-white/[0.08] pb-4 overflow-x-auto scrollbar-none">
+      {/* Tabs */}
+      <div className="flex items-center gap-2 border-b border-white/[0.06] pb-2">
         <button
           onClick={() => setActiveTab('created')}
-          className={`flex items-center gap-2 px-5 py-2.5 rounded-2xl text-xs sm:text-sm font-bold transition-all ${
+          className={`px-3 py-1.5 rounded-md text-xs font-medium transition-colors ${
             activeTab === 'created'
-              ? 'bg-emerald-500 text-slate-950 shadow-md shadow-emerald-500/25'
-              : 'bg-white/[0.03] text-slate-300 hover:bg-white/[0.06] hover:text-white border border-white/[0.06]'
+              ? 'bg-white/[0.08] text-white font-semibold'
+              : 'text-slate-400 hover:text-slate-200'
           }`}
         >
-          <Layers className="w-4 h-4" />
-          <span>My Created Causes ({createdCampaigns.length})</span>
+          Created Causes ({createdCampaigns.length})
         </button>
 
         <button
           onClick={() => setActiveTab('backed')}
-          className={`flex items-center gap-2 px-5 py-2.5 rounded-2xl text-xs sm:text-sm font-bold transition-all ${
+          className={`px-3 py-1.5 rounded-md text-xs font-medium transition-colors ${
             activeTab === 'backed'
-              ? 'bg-emerald-500 text-slate-950 shadow-md shadow-emerald-500/25'
-              : 'bg-white/[0.03] text-slate-300 hover:bg-white/[0.06] hover:text-white border border-white/[0.06]'
+              ? 'bg-white/[0.08] text-white font-semibold'
+              : 'text-slate-400 hover:text-slate-200'
           }`}
         >
-          <Heart className="w-4 h-4" />
-          <span>Backed Causes ({backedCampaigns.length})</span>
+          Backed Causes ({backedCampaigns.length})
         </button>
 
         <button
           onClick={() => setActiveTab('saved')}
-          className={`flex items-center gap-2 px-5 py-2.5 rounded-2xl text-xs sm:text-sm font-bold transition-all ${
+          className={`px-3 py-1.5 rounded-md text-xs font-medium transition-colors ${
             activeTab === 'saved'
-              ? 'bg-emerald-500 text-slate-950 shadow-md shadow-emerald-500/25'
-              : 'bg-white/[0.03] text-slate-300 hover:bg-white/[0.06] hover:text-white border border-white/[0.06]'
+              ? 'bg-white/[0.08] text-white font-semibold'
+              : 'text-slate-400 hover:text-slate-200'
           }`}
         >
-          <Bookmark className="w-4 h-4" />
-          <span>Saved Bookmarks ({savedCampaigns.length})</span>
+          Saved Bookmarks ({savedCampaigns.length})
         </button>
       </div>
 
-      {/* Tab Content */}
+      {/* Content */}
       <div>
         {activeTab === 'created' && (
           <div>
             {createdCampaigns.length > 0 ? (
-              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
                 {createdCampaigns.map((campaign, idx) => (
                   <FundCard key={campaign.pId ?? idx} {...campaign} />
                 ))}
               </div>
             ) : (
-              <div className="text-center py-16 p-8 rounded-3xl bg-white/[0.02] border border-white/[0.06] space-y-4 max-w-md mx-auto">
-                <Layers className="w-12 h-12 text-slate-500 mx-auto" />
-                <h3 className="font-display font-bold text-lg text-white">
-                  No Created Causes Yet
-                </h3>
-                <p className="text-xs text-slate-400 leading-relaxed">
-                  Start your own charitable mission with 0% intermediary fee and transparent smart contract tracking.
-                </p>
+              <div className="text-center py-12 p-6 rounded-xl bg-[#12151C] border border-white/[0.06] space-y-2 max-w-sm mx-auto">
+                <Inbox className="w-6 h-6 text-slate-500 mx-auto" />
+                <p className="text-xs font-medium text-slate-300">No campaigns launched yet</p>
                 <Link
                   to="/create-campaign"
-                  className="inline-flex items-center gap-2 px-6 py-2.5 rounded-xl font-bold text-xs text-slate-950 bg-gradient-to-r from-emerald-400 to-teal-300 shadow-md shadow-emerald-500/20"
+                  className="inline-block text-xs text-emerald-400 hover:underline pt-1"
                 >
-                  <PlusCircle className="w-3.5 h-3.5" />
-                  <span>Start Your First Cause</span>
+                  Create your first cause
                 </Link>
               </div>
             )}
@@ -270,26 +230,20 @@ const Profile = () => {
         {activeTab === 'backed' && (
           <div>
             {backedCampaigns.length > 0 ? (
-              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
                 {backedCampaigns.map((campaign, idx) => (
                   <FundCard key={campaign.pId ?? idx} {...campaign} />
                 ))}
               </div>
             ) : (
-              <div className="text-center py-16 p-8 rounded-3xl bg-white/[0.02] border border-white/[0.06] space-y-4 max-w-md mx-auto">
-                <Heart className="w-12 h-12 text-slate-500 mx-auto" />
-                <h3 className="font-display font-bold text-lg text-white">
-                  No Backed Causes Yet
-                </h3>
-                <p className="text-xs text-slate-400 leading-relaxed">
-                  You haven't made any donations with this wallet yet. Support an inspiring mission today!
-                </p>
+              <div className="text-center py-12 p-6 rounded-xl bg-[#12151C] border border-white/[0.06] space-y-2 max-w-sm mx-auto">
+                <Inbox className="w-6 h-6 text-slate-500 mx-auto" />
+                <p className="text-xs font-medium text-slate-300">No donations recorded from this wallet</p>
                 <Link
                   to="/"
-                  className="inline-flex items-center gap-2 px-6 py-2.5 rounded-xl font-bold text-xs text-slate-950 bg-gradient-to-r from-emerald-400 to-teal-300 shadow-md shadow-emerald-500/20"
+                  className="inline-block text-xs text-emerald-400 hover:underline pt-1"
                 >
-                  <ArrowUpRight className="w-3.5 h-3.5" />
-                  <span>Explore Causes to Support</span>
+                  Explore active campaigns
                 </Link>
               </div>
             )}
@@ -299,26 +253,20 @@ const Profile = () => {
         {activeTab === 'saved' && (
           <div>
             {savedCampaigns.length > 0 ? (
-              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
                 {savedCampaigns.map((campaign, idx) => (
                   <FundCard key={campaign.pId ?? idx} {...campaign} />
                 ))}
               </div>
             ) : (
-              <div className="text-center py-16 p-8 rounded-3xl bg-white/[0.02] border border-white/[0.06] space-y-4 max-w-md mx-auto">
-                <Bookmark className="w-12 h-12 text-slate-500 mx-auto" />
-                <h3 className="font-display font-bold text-lg text-white">
-                  No Saved Bookmarks
-                </h3>
-                <p className="text-xs text-slate-400 leading-relaxed">
-                  Click the bookmark icon on any campaign card to save it here for quick tracking.
-                </p>
+              <div className="text-center py-12 p-6 rounded-xl bg-[#12151C] border border-white/[0.06] space-y-2 max-w-sm mx-auto">
+                <Inbox className="w-6 h-6 text-slate-500 mx-auto" />
+                <p className="text-xs font-medium text-slate-300">No saved causes</p>
                 <Link
                   to="/"
-                  className="inline-flex items-center gap-2 px-6 py-2.5 rounded-xl font-bold text-xs text-slate-950 bg-gradient-to-r from-emerald-400 to-teal-300 shadow-md shadow-emerald-500/20"
+                  className="inline-block text-xs text-emerald-400 hover:underline pt-1"
                 >
-                  <ArrowUpRight className="w-3.5 h-3.5" />
-                  <span>Explore Causes</span>
+                  Browse and bookmark causes
                 </Link>
               </div>
             )}
