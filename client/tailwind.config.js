@@ -8,8 +8,9 @@ module.exports = {
   theme: {
     extend: {
       fontFamily: {
-        sans: ['"Inter"', '"Plus Jakarta Sans"', 'sans-serif'],
-        mono: ['"JetBrains Mono"', '"Fira Code"', 'monospace'],
+        sans: ['"Plus Jakarta Sans"', 'system-ui', 'sans-serif'],
+        display: ['"Syne"', 'sans-serif'],
+        mono: ['"JetBrains Mono"', 'monospace'],
       },
       colors: {
         brand: {
@@ -18,31 +19,31 @@ module.exports = {
           400: '#34d399',
           500: '#10b981',
           600: '#059669',
-          700: '#047857',
         },
         surface: {
-          base: '#090A0F',
-          subtle: '#12151C',
-          card: '#161922',
-          cardHover: '#1B202B',
+          base: '#000000',
+          subtle: '#050508',
+          card: '#0c0d12',
+          cardHover: '#13151d',
           border: 'rgba(255, 255, 255, 0.08)',
-          borderSubtle: 'rgba(255, 255, 255, 0.05)',
+          borderHover: 'rgba(255, 255, 255, 0.18)',
         },
         accent: {
-          primary: '#10b981', // Refined Emerald
-          primaryHover: '#059669',
-          muted: '#3b82f6',
+          emerald: '#10B981',
+          teal: '#14B8A6',
+          cyan: '#06B6D4',
         }
       },
-      borderRadius: {
-        'card': '14px',
-        'btn': '8px',
-        'input': '8px',
+      animation: {
+        'shine': 'shine 3s linear infinite',
+        'pulse-subtle': 'pulse 3s cubic-bezier(0.4, 0, 0.6, 1) infinite',
       },
-      boxShadow: {
-        'card': '0 1px 3px 0 rgba(0, 0, 0, 0.3), 0 1px 2px -1px rgba(0, 0, 0, 0.2)',
-        'modal': '0 20px 25px -5px rgba(0, 0, 0, 0.5), 0 8px 10px -6px rgba(0, 0, 0, 0.4)',
-      },
+      keyframes: {
+        shine: {
+          '0%': { backgroundPosition: '200% 0' },
+          '100%': { backgroundPosition: '-200% 0' },
+        }
+      }
     },
   },
   plugins: [],

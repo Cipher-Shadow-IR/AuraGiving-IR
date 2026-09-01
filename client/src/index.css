@@ -1,67 +1,114 @@
-@import url("https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Syne:wght@500;600;700;800&display=swap");
 
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 @layer base {
+  html.lenis {
+    height: auto;
+  }
+
+  .lenis.lenis-smooth {
+    scroll-behavior: auto !important;
+  }
+
+  .lenis.lenis-smooth [data-lenis-prevent] {
+    overscroll-behavior: contain;
+  }
+
+  .lenis.lenis-stopped {
+    overflow: hidden;
+  }
+
   body {
-    @apply bg-[#090A0F] text-[#F3F4F6] antialiased selection:bg-emerald-500/20 selection:text-emerald-400;
-    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    @apply bg-[#000000] text-[#F3F4F6] antialiased selection:bg-emerald-500/20 selection:text-emerald-300;
+    font-family: 'Plus Jakarta Sans', system-ui, sans-serif;
   }
 
-  h1, h2, h3, h4, h5, h6 {
-    @apply tracking-tight text-white font-semibold;
+  h1, h2, h3, h4 {
+    font-family: 'Syne', sans-serif;
+    @apply tracking-tighter font-bold text-white;
   }
 }
 
-/* Minimalist high-trust panels */
-.surface-panel {
-  background: #12151C;
-  border: 1px solid rgba(255, 255, 255, 0.07);
+/* Background Grid with Radial Fade Mask */
+.bg-grid-mask {
+  background-image: linear-gradient(to right, rgba(255, 255, 255, 0.04) 1px, transparent 1px),
+                    linear-gradient(to bottom, rgba(255, 255, 255, 0.04) 1px, transparent 1px);
+  background-size: 4rem 4rem;
+  mask-image: radial-gradient(ellipse 60% 50% at 50% 0%, #000 70%, transparent 100%);
+  -webkit-mask-image: radial-gradient(ellipse 60% 50% at 50% 0%, #000 70%, transparent 100%);
 }
 
-.surface-card {
-  background: #12151C;
-  border: 1px solid rgba(255, 255, 255, 0.07);
-  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+/* High-contrast gradient border strokes */
+.gradient-border {
+  position: relative;
+  background: #08090d;
 }
 
-.surface-card:hover {
-  border-color: rgba(255, 255, 255, 0.15);
-  background: #161A23;
+.gradient-border::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  padding: 1px;
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.16) 0%, rgba(255, 255, 255, 0.02) 100%);
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  pointer-events: none;
 }
 
-.surface-input {
-  background: #0D0F15;
-  border: 1px solid rgba(255, 255, 255, 0.09);
-  color: #F3F4F6;
-  transition: border-color 0.15s ease, box-shadow 0.15s ease;
+.gradient-border:hover::before {
+  background: linear-gradient(135deg, rgba(16, 185, 129, 0.4) 0%, rgba(255, 255, 255, 0.06) 100%);
 }
 
-.surface-input:focus {
-  border-color: #10B981;
-  outline: none;
-  box-shadow: 0 0 0 1px #10B981;
+/* Interactive Hover Sheen */
+.btn-sheen {
+  position: relative;
+  overflow: hidden;
+}
+
+.btn-sheen::after {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: linear-gradient(60deg, transparent, rgba(255, 255, 255, 0.15), transparent);
+  transform: rotate(30deg) translateX(-100%);
+  transition: transform 0.6s ease;
+}
+
+.btn-sheen:hover::after {
+  transform: rotate(30deg) translateX(100%);
+}
+
+/* Tabular Technical Labels */
+.font-mono-tabular {
+  font-family: 'JetBrains Mono', monospace;
+  font-variant-numeric: tabular-nums;
 }
 
 /* Custom Minimalist Scrollbar */
 ::-webkit-scrollbar {
-  width: 6px;
-  height: 6px;
+  width: 5px;
+  height: 5px;
 }
 
 ::-webkit-scrollbar-track {
-  background: #090A0F;
+  background: #000000;
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #1E232F;
-  border-radius: 3px;
+  background: #181A22;
+  border-radius: 2px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: #2D3546;
+  background: #252834;
 }
 
 input[type="date"]::-webkit-calendar-picker-indicator {
