@@ -20,7 +20,7 @@ const FormField = ({
             {labelName}
           </label>
           {hint && (
-            <span className="text-[11px] text-slate-500 font-mono">
+            <span className="text-[11px] text-[#94A3B8] font-mono">
               {hint}
             </span>
           )}
@@ -29,7 +29,7 @@ const FormField = ({
 
       <div className="relative w-full">
         {Icon && (
-          <Icon className="absolute left-3 top-2.5 w-3.5 h-3.5 text-slate-500 pointer-events-none" />
+          <Icon className="absolute left-3 top-2.5 w-3.5 h-3.5 text-[#94A3B8] pointer-events-none" />
         )}
 
         {isTextArea ? (
@@ -39,7 +39,7 @@ const FormField = ({
             onChange={handleChange}
             rows={4}
             placeholder={placeholder}
-            className={`w-full py-2 px-3 rounded-lg bg-[#0D0F15] border border-white/[0.08] text-xs text-white placeholder:text-slate-600 focus:outline-none focus:border-emerald-500 transition-colors resize-y ${
+            className={`w-full py-2 px-3 rounded-lg bg-[#0F131C] border border-white/[0.08] text-xs text-white placeholder:text-[#94A3B8] focus:outline-none focus:border-[#3B82F6] transition-colors resize-y ${
               Icon ? 'pl-9' : ''
             }`}
           />
@@ -51,7 +51,7 @@ const FormField = ({
             type={inputType}
             step={step}
             placeholder={placeholder}
-            className={`w-full py-2 px-3 rounded-lg bg-[#0D0F15] border border-white/[0.08] text-xs text-white placeholder:text-slate-600 focus:outline-none focus:border-emerald-500 transition-colors ${
+            className={`w-full py-2 px-3 rounded-lg bg-[#0F131C] border border-white/[0.08] text-xs text-white placeholder:text-[#94A3B8] focus:outline-none focus:border-[#3B82F6] transition-colors ${
               Icon ? 'pl-9' : ''
             }`}
           />

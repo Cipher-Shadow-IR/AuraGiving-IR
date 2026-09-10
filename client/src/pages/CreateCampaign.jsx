@@ -131,38 +131,38 @@ const CreateCampaign = () => {
   };
 
   return (
-    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-8">
+    <div className="max-w-7xl mx-auto px-6 sm:px-8 lg:px-12 py-8 space-y-8">
       
       {/* Top Header */}
       <div className="flex items-center justify-between border-b border-white/[0.06] pb-4">
         <button
           onClick={() => navigate('/')}
-          className="inline-flex items-center gap-1.5 text-xs font-medium text-slate-400 hover:text-slate-200 transition-colors"
+          className="inline-flex items-center gap-1.5 text-xs font-medium text-[#94A3B8] hover:text-white transition-colors"
         >
           <ArrowLeft className="w-3.5 h-3.5" />
           <span>Back to Directory</span>
         </button>
 
-        <span className="text-xs font-mono text-emerald-400 flex items-center gap-1">
-          <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
+        <span className="text-xs font-mono text-[#34D399] flex items-center gap-1">
+          <span className="w-1.5 h-1.5 rounded-full bg-[#34D399] animate-pulse" />
           <span>EVM Deployment Verified</span>
         </span>
       </div>
 
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
         
-        {/* Left Form */}
+        {/* Left Form (Card Backing #161B26) */}
         <motion.div 
           initial={{ opacity: 0, x: -20 }}
           animate={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
-          className="lg:col-span-7 gradient-border rounded-xl p-6 sm:p-7 space-y-6 shadow-sm"
+          className="lg:col-span-7 gradient-border rounded-xl p-6 sm:p-7 space-y-6 shadow-card bg-[#161B26]"
         >
           <div className="space-y-1">
             <h1 className="text-2xl font-bold text-white tracking-tight font-display">
               Launch a Charitable Mission
             </h1>
-            <p className="text-xs text-slate-400 leading-relaxed">
+            <p className="text-xs text-[#94A3B8] leading-relaxed">
               Deploy your campaign directly to the Ethereum blockchain. All incoming funds route non-custodially to your address.
             </p>
           </div>
@@ -186,10 +186,10 @@ const CreateCampaign = () => {
                 <select
                   value={form.category}
                   onChange={(e) => handleFormFieldChange('category', e)}
-                  className="w-full py-2 px-3 rounded-lg bg-[#0D0F15] border border-white/[0.08] text-xs text-white focus:outline-none focus:border-emerald-500 cursor-pointer"
+                  className="w-full py-2 px-3 rounded-lg bg-[#0F131C] border border-white/[0.08] text-xs text-white focus:outline-none focus:border-[#3B82F6] cursor-pointer"
                 >
                   {CATEGORIES.map((cat) => (
-                    <option key={cat} value={cat} className="bg-[#090A0F] text-white">
+                    <option key={cat} value={cat} className="bg-[#161B26] text-white">
                       {cat}
                     </option>
                   ))}
@@ -234,7 +234,7 @@ const CreateCampaign = () => {
                   <label className="text-xs font-medium text-slate-300">
                     Deadline *
                   </label>
-                  <div className="flex gap-1 text-[11px] font-mono text-emerald-400">
+                  <div className="flex gap-1 text-[11px] font-mono text-[#3B82F6]">
                     <button type="button" onClick={() => handleDateShortcut(7)} className="hover:underline">+7d</button>
                     <span>•</span>
                     <button type="button" onClick={() => handleDateShortcut(30)} className="hover:underline">+30d</button>
@@ -248,7 +248,7 @@ const CreateCampaign = () => {
                   required
                   value={form.deadline}
                   onChange={(e) => handleFormFieldChange('deadline', e)}
-                  className="w-full py-2 px-3 rounded-lg bg-[#0D0F15] border border-white/[0.08] text-xs text-white focus:outline-none focus:border-emerald-500 cursor-pointer"
+                  className="w-full py-2 px-3 rounded-lg bg-[#0F131C] border border-white/[0.08] text-xs text-white focus:outline-none focus:border-[#3B82F6] cursor-pointer"
                 />
               </div>
             </div>
@@ -266,13 +266,13 @@ const CreateCampaign = () => {
               />
 
               <div className="flex items-center gap-1.5 flex-wrap pt-0.5">
-                <span className="text-[11px] text-slate-500 font-mono">Presets:</span>
+                <span className="text-[11px] text-[#94A3B8] font-mono">Presets:</span>
                 {CURATED_IMAGES.map((preset) => (
                   <button
                     type="button"
                     key={preset.name}
                     onClick={() => handleSelectPresetImage(preset)}
-                    className="px-2 py-0.5 rounded-md bg-white/[0.03] hover:bg-white/[0.06] border border-white/[0.06] text-[11px] text-slate-400 hover:text-slate-200 transition-colors"
+                    className="px-2 py-0.5 rounded-md bg-white/[0.03] hover:bg-white/[0.06] border border-white/[0.06] text-[11px] text-[#94A3B8] hover:text-white transition-colors"
                   >
                     {preset.name}
                   </button>
@@ -280,15 +280,16 @@ const CreateCampaign = () => {
               </div>
             </div>
 
+            {/* Primary CTA (Sapphire #3B82F6) */}
             <div className="pt-2">
               <button
                 type="submit"
                 disabled={isLoading}
-                className="btn-sheen w-full py-2.5 rounded-lg font-semibold text-slate-950 bg-emerald-400 hover:bg-emerald-300 transition-all flex items-center justify-center gap-1.5 text-xs active:scale-95 disabled:opacity-50"
+                className="btn-sheen w-full py-2.5 rounded-lg font-semibold text-white bg-[#3B82F6] hover:bg-[#2563EB] transition-all flex items-center justify-center gap-1.5 text-xs active:scale-95 shadow-md shadow-blue-500/20 disabled:opacity-50"
               >
                 {isLoading ? (
                   <>
-                    <span className="w-3.5 h-3.5 border-2 border-slate-950 border-t-transparent rounded-full animate-spin" />
+                    <span className="w-3.5 h-3.5 border-2 border-white border-t-transparent rounded-full animate-spin" />
                     <span>Deploying Contract...</span>
                   </>
                 ) : (
@@ -309,13 +310,13 @@ const CreateCampaign = () => {
           initial={{ opacity: 0, x: 20 }}
           animate={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.5, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
-          className="lg:col-span-5 sticky top-20 space-y-3"
+          className="lg:col-span-5 sticky top-24 space-y-3"
         >
-          <div className="flex items-center justify-between text-xs text-slate-400">
-            <span className="font-mono text-[11px] uppercase tracking-wider text-emerald-400">
+          <div className="flex items-center justify-between text-xs text-[#94A3B8]">
+            <span className="font-mono text-[11px] uppercase tracking-wider text-[#3B82F6] font-semibold">
               Live Realtime Preview
             </span>
-            <span className="text-slate-500 font-mono text-[11px]">As rendered in Directory</span>
+            <span className="text-[#94A3B8] font-mono text-[11px]">Rendered via Hardhat node</span>
           </div>
 
           <FundCard
