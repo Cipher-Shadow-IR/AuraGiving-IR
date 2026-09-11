@@ -66,7 +66,6 @@ const Navbar = ({ onOpenHowItWorks, onOpenTutorial }) => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-20 gap-4">
           
-          {/* Left Zone: Brand Logo & Protocol Status (min-width prevents shift) */}
           <div className="flex items-center justify-start min-w-[200px] shrink-0">
             <Link to="/" className="flex items-center gap-3 group py-1">
               <img
@@ -85,7 +84,6 @@ const Navbar = ({ onOpenHowItWorks, onOpenTutorial }) => {
             </Link>
           </div>
 
-          {/* Center Zone: Evenly Spaced Navigation Pills */}
           <nav className="hidden lg:flex items-center justify-center flex-1">
             <div className="flex items-center gap-1 bg-white/[0.03] p-1.5 rounded-full border border-white/[0.08] shadow-sm">
               {navLinks.map((link) => {
@@ -127,13 +125,10 @@ const Navbar = ({ onOpenHowItWorks, onOpenTutorial }) => {
             </div>
           </nav>
 
-          {/* Right Zone: Theme, Network Status & Wallet Hub */}
           <div className="hidden sm:flex items-center justify-end min-w-[200px] gap-3 shrink-0">
             
-            {/* Theme Toggle */}
             <ThemeToggle />
 
-            {/* Active Network Pill */}
             <button
               onClick={() => switchNetwork(CHAIN_ID)}
               title={isCurrentNetwork ? `Connected to ${NETWORK_NAME}` : `Switch to ${NETWORK_NAME}`}
@@ -143,7 +138,6 @@ const Navbar = ({ onOpenHowItWorks, onOpenTutorial }) => {
               <span className="truncate">{NETWORK_NAME}</span>
             </button>
 
-            {/* Wallet Button */}
             {address ? (
               <div className="relative shrink-0" ref={dropdownRef}>
                 <button
@@ -221,7 +215,6 @@ const Navbar = ({ onOpenHowItWorks, onOpenTutorial }) => {
             )}
           </div>
 
-          {/* Mobile Hamburger Button */}
           <div className="flex lg:hidden items-center gap-2">
             <button
               onClick={() => setMobileMenuOpen((prev) => !prev)}
@@ -234,7 +227,6 @@ const Navbar = ({ onOpenHowItWorks, onOpenTutorial }) => {
         </div>
       </div>
 
-      {/* Mobile Menu Drawer */}
       {mobileMenuOpen && (
         <div className="lg:hidden border-b border-white/[0.08] light:border-black/[0.08] bg-[#0A0D14]/95 light:bg-[#f8fafc]/95 backdrop-blur-2xl px-6 py-5 space-y-4">
           <div className="space-y-1">
@@ -269,7 +261,6 @@ const Navbar = ({ onOpenHowItWorks, onOpenTutorial }) => {
             </button>
           </div>
 
-          {/* Mobile Wallet / Network */}
           <div className="pt-4 border-t border-white/[0.06] light:border-black/[0.06] space-y-3">
             <div className="flex items-center justify-between text-xs font-mono text-[#94A3B8] light:text-[#475569]">
               <span>Switch Theme:</span>

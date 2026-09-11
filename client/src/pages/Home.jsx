@@ -34,7 +34,6 @@ const Home = ({ onOpenHowItWorks, onOpenTutorial }) => {
 
   return (
     <div>
-      {/* Kinetic Hero Section with Floating Badges and Metric CountUp */}
       <Hero 
         campaigns={campaigns} 
         onOpenHowItWorks={onOpenHowItWorks}
@@ -42,13 +41,10 @@ const Home = ({ onOpenHowItWorks, onOpenTutorial }) => {
         onScrollToExplore={handleScrollToExplore}
       />
 
-      {/* Infinite Marquee Ticker */}
       <Marquee />
 
-      {/* Sui.io-inspired Scrollytelling Pipeline */}
       <ScrollytellingPipeline />
 
-      {/* Main Campaign Directory */}
       <div id="explore-section" className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-16">
         <DisplayCampaigns
           title="Verified Campaign Directory"

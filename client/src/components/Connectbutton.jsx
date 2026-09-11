@@ -1,4 +1,3 @@
-// components/Connectbutton.jsx
 import React from "react";
 import { useStateContext } from "../context";
 

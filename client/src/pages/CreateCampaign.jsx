@@ -133,7 +133,6 @@ const CreateCampaign = () => {
   return (
     <div className="max-w-7xl mx-auto px-6 sm:px-8 lg:px-12 py-8 space-y-8">
       
-      {/* Top Header */}
       <div className="flex items-center justify-between border-b border-white/[0.06] pb-4">
         <button
           onClick={() => navigate('/')}
@@ -151,7 +150,6 @@ const CreateCampaign = () => {
 
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
         
-        {/* Left Form (Card Backing #161B26) */}
         <motion.div 
           initial={{ opacity: 0, x: -20 }}
           animate={{ opacity: 1, x: 0 }}
@@ -253,7 +251,6 @@ const CreateCampaign = () => {
               </div>
             </div>
 
-            {/* Image URL & Presets */}
             <div className="space-y-2">
               <FormField
                 labelName="Cover Image URL *"
@@ -280,7 +277,6 @@ const CreateCampaign = () => {
               </div>
             </div>
 
-            {/* Primary CTA (Sapphire #3B82F6) */}
             <div className="pt-2">
               <button
                 type="submit"
@@ -305,7 +301,6 @@ const CreateCampaign = () => {
 
         </motion.div>
 
-        {/* Right Column: Live Realtime Preview */}
         <motion.div 
           initial={{ opacity: 0, x: 20 }}
           animate={{ opacity: 1, x: 0 }}

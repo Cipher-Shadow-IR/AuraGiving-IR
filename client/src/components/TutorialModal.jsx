@@ -160,7 +160,6 @@ const TutorialModal = ({ isOpen, onClose }) => {
     <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80 backdrop-blur-sm animate-in fade-in duration-150">
       <div className="relative w-full max-w-xl rounded-xl bg-[#161B26] border border-white/[0.08] shadow-2xl p-6 space-y-6">
         
-        {/* Close Button */}
         <button
           onClick={onClose}
           className="absolute top-4 right-4 text-[#94A3B8] hover:text-white transition-colors"
@@ -168,7 +167,6 @@ const TutorialModal = ({ isOpen, onClose }) => {
           <X className="w-4 h-4" />
         </button>
 
-        {/* Progress Header */}
         <div className="space-y-2">
           <div className="flex items-center justify-between text-xs">
             <span className="font-mono text-[#3B82F6] font-semibold text-[11px]">
@@ -189,7 +187,6 @@ const TutorialModal = ({ isOpen, onClose }) => {
           </div>
         </div>
 
-        {/* Content */}
         <div className="space-y-4 min-h-[220px]">
           <div>
             <h3 className="text-base font-bold text-white font-display">
@@ -203,7 +200,6 @@ const TutorialModal = ({ isOpen, onClose }) => {
           <div>{step.content}</div>
         </div>
 
-        {/* Actions */}
         <div className="pt-4 border-t border-white/[0.06] flex items-center justify-between">
           <button
             onClick={handlePrev}

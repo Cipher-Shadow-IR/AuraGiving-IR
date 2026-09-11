@@ -148,7 +148,6 @@ const CampaignDetails = () => {
   return (
     <div className="max-w-7xl mx-auto px-6 sm:px-8 lg:px-12 py-8 space-y-8">
       
-      {/* Top Header */}
       <div className="flex items-center justify-between border-b border-white/[0.06] pb-4">
         <button
           onClick={() => navigate('/')}
@@ -177,10 +176,8 @@ const CampaignDetails = () => {
         </div>
       </div>
 
-      {/* Main Dual-Column Content */}
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
         
-        {/* Left Column */}
         <motion.div 
           initial={{ opacity: 0, x: -20 }}
           animate={{ opacity: 1, x: 0 }}
@@ -188,7 +185,6 @@ const CampaignDetails = () => {
           className="lg:col-span-7 space-y-6"
         >
           
-          {/* Main Banner */}
           <div className="relative rounded-xl overflow-hidden border border-white/[0.08] bg-[#0A0D14] h-72 sm:h-80">
             <img
               src={campaign.image}
@@ -210,7 +206,6 @@ const CampaignDetails = () => {
             </div>
           </div>
 
-          {/* Organizer Card */}
           <div className="p-4 rounded-xl gradient-border bg-[#161B26] flex items-center justify-between gap-4">
             <div className="space-y-0.5">
               <p className="text-[10px] uppercase font-semibold text-[#94A3B8] tracking-wider font-mono">
@@ -237,7 +232,6 @@ const CampaignDetails = () => {
             </a>
           </div>
 
-          {/* Mission Description */}
           <div className="p-6 rounded-xl gradient-border bg-[#161B26] space-y-3">
             <h2 className="text-sm font-semibold uppercase tracking-wider text-slate-400 font-display">
               About This Mission
@@ -252,7 +246,6 @@ const CampaignDetails = () => {
             </div>
           </div>
 
-          {/* Backer Leaderboard */}
           <div className="p-6 rounded-xl gradient-border bg-[#161B26] space-y-4">
             <div className="flex items-center justify-between">
               <h2 className="text-sm font-semibold uppercase tracking-wider text-slate-400 font-display">
@@ -287,7 +280,6 @@ const CampaignDetails = () => {
             )}
           </div>
 
-          {/* Owner Deletion Control */}
           {isOwner && (
             <div className="p-4 rounded-xl bg-rose-950/10 border border-rose-500/20 space-y-2.5">
               <p className="text-xs font-medium text-rose-300">
@@ -326,7 +318,6 @@ const CampaignDetails = () => {
 
         </motion.div>
 
-        {/* Right Column: Donation Dock */}
         <motion.div 
           initial={{ opacity: 0, x: 20 }}
           animate={{ opacity: 1, x: 0 }}
@@ -334,7 +325,6 @@ const CampaignDetails = () => {
           className="lg:col-span-5 sticky top-24 space-y-4"
         >
           
-          {/* Key Metrics Grid */}
           <div className="grid grid-cols-3 gap-2.5">
             <div className="p-3.5 rounded-xl gradient-border bg-[#161B26] text-left">
               <p className="text-[11px] font-mono text-[#94A3B8] uppercase tracking-wider">Days Left</p>
@@ -352,7 +342,6 @@ const CampaignDetails = () => {
             </div>
           </div>
 
-          {/* Donation Station (Navy Backing #161B26) */}
           <div className="p-5 rounded-xl gradient-border bg-[#161B26] space-y-4 shadow-card">
             
             <div className="flex justify-between items-baseline text-xs font-mono">
@@ -362,7 +351,6 @@ const CampaignDetails = () => {
               <span className="text-[#34D399] font-semibold">{percentage}%</span>
             </div>
 
-            {/* Campaign Progress Bar (#34D399 Mint Fill) */}
             <div className="w-full h-1.5 bg-white/[0.06] rounded-full overflow-hidden">
               <div
                 className="h-full bg-[#34D399] rounded-full transition-all duration-300 shadow-[0_0_8px_rgba(52,211,153,0.4)]"
@@ -372,7 +360,6 @@ const CampaignDetails = () => {
 
             <form onSubmit={handleDonate} className="space-y-4 pt-1">
               
-              {/* Preset Buttons */}
               <div className="space-y-1.5">
                 <label className="text-xs font-medium text-slate-300">
                   Select Amount (ETH)
@@ -401,7 +388,6 @@ const CampaignDetails = () => {
                 </div>
               </div>
 
-              {/* Custom Input */}
               <div className="space-y-1.5">
                 <div className="flex justify-between items-center text-xs">
                   <span className="text-[#94A3B8]">Or custom amount</span>
@@ -436,7 +422,6 @@ const CampaignDetails = () => {
                 <span className="text-[#34D399] font-semibold">+{impactPercentage}%</span>
               </div>
 
-              {/* Primary CTA (Sapphire #3B82F6) */}
               <button
                 type="submit"
                 disabled={isLoading}

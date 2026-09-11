@@ -75,7 +75,6 @@ const DisplayCampaigns = ({ title, isLoading, campaigns = [] }) => {
   return (
     <div id="explore-section" className="space-y-6 pb-20">
       
-      {/* Section Header & Search / Sort Controls */}
       <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 pt-4">
         <div>
           <h2 className="text-xl sm:text-2xl font-bold tracking-tight text-white font-display">
@@ -86,7 +85,6 @@ const DisplayCampaigns = ({ title, isLoading, campaigns = [] }) => {
           </p>
         </div>
 
-        {/* Search & Sort */}
         <div className="flex items-center gap-2.5">
           <div className="relative w-full sm:w-64">
             <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-3.5 h-3.5 text-[#94A3B8]" />
@@ -123,7 +121,6 @@ const DisplayCampaigns = ({ title, isLoading, campaigns = [] }) => {
         </div>
       </div>
 
-      {/* Sleek Segmented Category Row */}
       <div className="flex items-center gap-1.5 overflow-x-auto pb-2 border-b border-white/[0.06] scrollbar-none">
         {CATEGORIES.map((cat) => {
           const isSelected = selectedCategory === cat;
@@ -143,7 +140,6 @@ const DisplayCampaigns = ({ title, isLoading, campaigns = [] }) => {
         })}
       </div>
 
-      {/* Subfilter & Count */}
       <div className="flex items-center justify-between text-xs text-[#94A3B8]">
         <div className="flex items-center gap-2">
           <button
@@ -173,7 +169,6 @@ const DisplayCampaigns = ({ title, isLoading, campaigns = [] }) => {
         </span>
       </div>
 
-      {/* Grid */}
       {isLoading ? (
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
           {[1, 2, 3, 4, 5, 6].map((i) => (

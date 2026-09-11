@@ -37,7 +37,6 @@ const Footer = ({ onOpenHowItWorks }) => {
 
         </div>
 
-        {/* Contract strip & Ishaan Ray credits */}
         <div className="pt-6 border-t border-white/[0.04] flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 font-mono text-[11px] text-[#94A3B8]">
           <div className="flex items-center gap-2">
             <span>Contract ({NETWORK_NAME}):</span>

@@ -4,7 +4,6 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Light Theme Complete Contrast Overrides */
 html.light,
 html.light body,
 .light,
@@ -18,7 +17,6 @@ html.light h1, html.light h2, html.light h3, html.light h4,
   color: #0f172a !important;
 }
 
-/* Base Surfaces & Dark Hex Overrides */
 html.light .bg-\[\#000000\],
 html.light .bg-\[\#0A0D14\],
 html.light .bg-\[\#0a0d14\],
@@ -165,7 +163,6 @@ html.light .bg-grid-mask,
   }
 }
 
-/* Background Grid with Radial Fade Mask */
 .bg-grid-mask {
   background-image: linear-gradient(to right, rgba(255, 255, 255, 0.03) 1px, transparent 1px),
                     linear-gradient(to bottom, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
@@ -174,7 +171,6 @@ html.light .bg-grid-mask,
   -webkit-mask-image: radial-gradient(ellipse 60% 50% at 50% 0%, #000 70%, transparent 100%);
 }
 
-/* High-contrast structural card backing with gradient border */
 .gradient-border {
   position: relative;
   background: #161B26;
@@ -197,7 +193,6 @@ html.light .bg-grid-mask,
   background: linear-gradient(135deg, rgba(59, 130, 246, 0.4) 0%, rgba(255, 255, 255, 0.06) 100%);
 }
 
-/* Interactive Hover Sheen for Primary Sapphire CTAs */
 .btn-sheen {
   position: relative;
   overflow: hidden;
@@ -219,13 +214,11 @@ html.light .bg-grid-mask,
   transform: rotate(30deg) translateX(100%);
 }
 
-/* Tabular Technical Labels */
 .font-mono-tabular {
   font-family: 'JetBrains Mono', monospace;
   font-variant-numeric: tabular-nums;
 }
 
-/* Custom Minimalist Scrollbar */
 ::-webkit-scrollbar {
   width: 6px;
   height: 6px;
@@ -259,7 +252,6 @@ input[type="date"]::-webkit-calendar-picker-indicator {
   animation: marquee 30s linear infinite;
 }
 
-/* Motion Accessibility */
 @media (prefers-reduced-motion: reduce) {
   *,
   *::before,

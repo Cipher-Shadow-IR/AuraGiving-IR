@@ -66,7 +66,6 @@ const ScrollytellingPipeline = () => {
       
       <div className="max-w-7xl mx-auto px-6 sm:px-8 lg:px-12">
         
-        {/* Section Header */}
         <div className="max-w-2xl mx-auto text-center space-y-4 mb-20">
           <div className="inline-flex items-center gap-2 px-3 py-1 rounded-md bg-[#3B82F6]/10 border border-[#3B82F6]/20 text-xs font-mono text-[#3B82F6]">
             <span className="w-1.5 h-1.5 rounded-full bg-[#3B82F6] animate-pulse" />
@@ -82,19 +81,15 @@ const ScrollytellingPipeline = () => {
           </p>
         </div>
 
-        {/* Central Vertical Circuit Timeline */}
         <div className="relative">
           
-          {/* Background Track Line */}
           <div className="absolute left-4 md:left-1/2 top-0 bottom-0 w-[1px] bg-white/[0.06] -translate-x-1/2" />
 
-          {/* Active Glowing Animated Beam (Sapphire to Mint) */}
           <motion.div
             style={{ scaleY }}
             className="absolute left-4 md:left-1/2 top-0 bottom-0 w-[2px] bg-gradient-to-b from-[#3B82F6] via-[#38BDF8] to-[#34D399] -translate-x-1/2 origin-top shadow-[0_0_12px_rgba(59,130,246,0.5)]"
           />
 
-          {/* Node Cards */}
           <div className="space-y-16 sm:space-y-24">
             {PIPELINE_NODES.map((node, index) => {
               const isEven = index % 2 === 0;
@@ -107,17 +102,14 @@ const ScrollytellingPipeline = () => {
                     isEven ? 'md:flex-row-reverse' : ''
                   }`}
                 >
-                  {/* Central Node Indicator */}
                   <div className="absolute left-4 md:left-1/2 -translate-x-1/2 flex items-center justify-center w-8 h-8 rounded-full bg-[#0A0D14] border border-white/[0.15] z-10">
                     <div className="w-2 h-2 rounded-full bg-[#3B82F6] shadow-[0_0_8px_rgba(59,130,246,0.8)]" />
                   </div>
 
-                  {/* Card Content Container */}
                   <div className={`w-full md:w-1/2 pl-12 md:pl-0 ${isEven ? 'md:pr-14' : 'md:pl-14'}`}>
                     
                     <div className="gradient-border rounded-xl p-6 sm:p-7 space-y-5 shadow-card bg-[#161B26] transition-all duration-300">
                       
-                      {/* Node Header */}
                       <div className="flex items-center justify-between border-b border-white/[0.06] pb-4">
                         <div className="flex items-center gap-2">
                           <span className="font-mono text-xs font-semibold text-[#3B82F6]">
@@ -134,7 +126,6 @@ const ScrollytellingPipeline = () => {
                         </div>
                       </div>
 
-                      {/* Title & Body */}
                       <div className="space-y-2">
                         <h3 className="text-xl font-bold tracking-tight text-white font-display">
                           {node.title}
@@ -144,7 +135,6 @@ const ScrollytellingPipeline = () => {
                         </p>
                       </div>
 
-                      {/* Tabular Telemetry Strip (#94A3B8) */}
                       <div className="grid grid-cols-3 gap-2 pt-2 border-t border-white/[0.04]">
                         {node.metrics.map((metric, mIdx) => (
                           <div key={mIdx} className="space-y-0.5">

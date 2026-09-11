@@ -66,7 +66,6 @@ const HowItWorksModal = ({ isOpen, onClose }) => {
           ))}
         </div>
 
-        {/* Contract Details */}
         <div className="p-3.5 rounded-lg bg-[#0F131C] border border-white/[0.06] space-y-1.5 font-mono text-xs">
           <div className="flex justify-between text-[#94A3B8] text-[11px]">
             <span>Contract Address:</span>

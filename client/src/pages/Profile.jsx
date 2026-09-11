@@ -99,7 +99,6 @@ const Profile = () => {
   return (
     <div className="max-w-7xl mx-auto px-6 sm:px-8 lg:px-12 py-8 space-y-6">
       
-      {/* Profile Overview Card (Backing #161B26) */}
       <motion.div 
         initial={{ opacity: 0, y: 15 }}
         animate={{ opacity: 1, y: 0 }}
@@ -130,7 +129,6 @@ const Profile = () => {
             </div>
           </div>
 
-          {/* Primary Action Button (Sapphire #3B82F6) */}
           <Link
             to="/create-campaign"
             className="btn-sheen inline-flex items-center justify-center gap-1.5 px-4 py-2 rounded-lg text-xs font-semibold text-white bg-[#3B82F6] hover:bg-[#2563EB] transition-colors active:scale-95 shadow-md shadow-blue-500/20"
@@ -140,7 +138,6 @@ const Profile = () => {
           </Link>
         </div>
 
-        {/* 4-Metric Strip with Data Hierarchy (#94A3B8 & #34D399) */}
         <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 pt-4 border-t border-white/[0.06]">
           <div className="space-y-0.5">
             <span className="text-[11px] font-mono text-[#94A3B8] uppercase tracking-wider">Balance</span>
@@ -173,7 +170,6 @@ const Profile = () => {
 
       </motion.div>
 
-      {/* Segmented Tab Row */}
       <div className="flex items-center gap-2 border-b border-white/[0.06] pb-2">
         <button
           onClick={() => setActiveTab('created')}
@@ -209,7 +205,6 @@ const Profile = () => {
         </button>
       </div>
 
-      {/* Content Grid */}
       <motion.div
         key={activeTab}
         initial={{ opacity: 0, y: 10 }}

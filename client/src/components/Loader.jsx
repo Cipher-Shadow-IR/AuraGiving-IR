@@ -6,7 +6,6 @@ const Loader = ({ message = "Confirming transaction on Ethereum..." }) => {
     <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80 backdrop-blur-md animate-in fade-in duration-200">
       <div className="flex flex-col items-center justify-center p-7 rounded-xl bg-[#161B26] border border-white/[0.08] shadow-2xl max-w-sm w-full text-center space-y-5">
         
-        {/* Animated Cyber Beacon */}
         <div className="relative flex items-center justify-center w-16 h-16">
           <div className="absolute inset-0 rounded-full border-2 border-blue-500/20 animate-pulse" />
           <div className="absolute inset-2 rounded-full border-2 border-blue-500/30 border-t-[#3B82F6] border-r-[#34D399] animate-spin" />

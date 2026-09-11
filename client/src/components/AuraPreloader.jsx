@@ -42,7 +42,6 @@ export default function AuraPreloader() {
   return (
     <div className="fixed inset-0 z-[200] flex items-center justify-center bg-[#0A0D14]" aria-hidden="true">
       <div className="flex flex-col items-center gap-7 text-center select-none">
-        {/* Beating Heart */}
         <div className="relative">
           <div className="absolute -inset-8 rounded-full bg-rose-500/15 blur-3xl" />
           <div className="relative flex h-20 w-20 items-center justify-center">
@@ -56,7 +55,6 @@ export default function AuraPreloader() {
           </div>
         </div>
 
-        {/* Wordmark */}
         <div className="space-y-1.5">
           <span className="font-display text-xl font-bold tracking-tight text-white">
             Aura<span className="text-rose-400">Giving</span>
@@ -66,7 +64,6 @@ export default function AuraPreloader() {
           </span>
         </div>
 
-        {/* Warm progress line */}
         <div className="h-px w-44 overflow-hidden rounded-full bg-white/[0.08]">
           <div className="h-full w-1/3 bg-gradient-to-r from-rose-400 to-orange-400 [animation:aura_progress_1.5s_ease-in-out_infinite]" />
         </div>

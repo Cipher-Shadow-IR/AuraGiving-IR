@@ -51,7 +51,6 @@ const FundCard = ({
       onClick={handleCardClick}
       className="group rounded-xl bg-[#161B26] hover:bg-[#1C2331] border border-white/[0.08] hover:border-white/[0.18] transition-all duration-200 flex flex-col overflow-hidden cursor-pointer shadow-card"
     >
-      {/* Top Media */}
       <div className="relative h-44 w-full overflow-hidden bg-[#0A0D14]">
         <img
           src={image || "https://images.unsplash.com/photo-1488521787991-ed7bbaae773c?w=800"}
@@ -61,7 +60,6 @@ const FundCard = ({
         />
         <div className="absolute inset-0 bg-gradient-to-t from-[#161B26] via-transparent to-transparent opacity-85" />
 
-        {/* Category & Active Badges */}
         <div className="absolute top-3 left-3 flex items-center gap-1.5">
           <span className="px-2.5 py-0.5 rounded-md text-[11px] font-medium bg-[#0A0D14]/90 border border-white/[0.1] text-slate-200">
             {category}
@@ -79,7 +77,6 @@ const FundCard = ({
           )}
         </div>
 
-        {/* Action icons */}
         <div className="absolute top-3 right-3 flex items-center gap-1">
           <button
             onClick={(e) => {
@@ -101,14 +98,12 @@ const FundCard = ({
           </button>
         </div>
 
-        {/* Time Remaining */}
         <div className="absolute bottom-2.5 right-3 flex items-center gap-1 text-[11px] font-mono text-slate-300 bg-[#0A0D14]/85 px-2 py-0.5 rounded-md border border-white/[0.08]">
           <Clock className="w-3 h-3 text-[#94A3B8]" />
           <span>{isExpired ? 'Ended' : `${remainingDays}d left`}</span>
         </div>
       </div>
 
-      {/* Body Content */}
       <div className="p-4 flex-1 flex flex-col justify-between space-y-3.5">
         
         <div className="space-y-1">
@@ -120,7 +115,6 @@ const FundCard = ({
           </p>
         </div>
 
-        {/* Creator Info (Data Hierarchy #94A3B8) */}
         <div className="flex items-center justify-between text-xs text-[#94A3B8] font-mono pt-1 border-t border-white/[0.04]">
           <span className="truncate">
             by {owner ? `${owner.slice(0, 6)}...${owner.slice(-4)}` : "Organizer"}
@@ -131,7 +125,6 @@ const FundCard = ({
           </span>
         </div>
 
-        {/* Campaign Progress Bar (#34D399 Mint Fill) */}
         <div className="space-y-1.5 pt-0.5">
           <div className="flex justify-between items-baseline text-xs font-mono">
             <span className="text-slate-200 font-medium">
@@ -150,7 +143,6 @@ const FundCard = ({
           </div>
         </div>
 
-        {/* Actions: Primary CTA (#3B82F6) */}
         <div className="pt-1 grid grid-cols-2 gap-2">
           <button
             onClick={(e) => {

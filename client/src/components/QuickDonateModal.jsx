@@ -79,7 +79,6 @@ const QuickDonateModal = () => {
     <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80 backdrop-blur-sm animate-in fade-in duration-150">
       <div className="relative w-full max-w-md rounded-xl bg-[#161B26] border border-white/[0.08] shadow-2xl p-6 overflow-hidden">
         
-        {/* Close Button */}
         <button
           onClick={() => setQuickDonateCampaign(null)}
           className="absolute top-4 right-4 text-[#94A3B8] hover:text-white transition-colors"
@@ -102,7 +101,6 @@ const QuickDonateModal = () => {
         ) : (
           <form onSubmit={handleDonateSubmit} className="space-y-5">
             
-            {/* Header */}
             <div className="space-y-1">
               <span className="text-[10px] uppercase font-semibold text-[#3B82F6] tracking-wider font-mono">
                 Direct EVM Transfer
@@ -115,7 +113,6 @@ const QuickDonateModal = () => {
               </p>
             </div>
 
-            {/* Presets */}
             <div className="space-y-1.5">
               <label className="text-xs font-medium text-slate-300">
                 Amount (ETH)
@@ -141,7 +138,6 @@ const QuickDonateModal = () => {
               </div>
             </div>
 
-            {/* Custom Input */}
             <div className="space-y-1.5">
               <div className="flex justify-between items-center text-xs">
                 <span className="text-[#94A3B8]">Or custom amount</span>
@@ -171,13 +167,11 @@ const QuickDonateModal = () => {
               </div>
             </div>
 
-            {/* Impact Calculation Preview */}
             <div className="p-3 rounded-lg bg-white/[0.02] border border-white/[0.06] flex items-center justify-between text-xs font-mono">
               <span className="text-[#94A3B8]">Goal Impact:</span>
               <span className="text-[#34D399] font-semibold">+{impactPercentage}%</span>
             </div>
 
-            {/* Submit CTA */}
             <div className="space-y-2 pt-1">
               <button
                 type="submit"

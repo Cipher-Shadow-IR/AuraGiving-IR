@@ -52,20 +52,16 @@ const Hero = ({ campaigns = [], onOpenHowItWorks, onOpenTutorial, onScrollToExpl
   return (
     <section className="relative py-14 sm:py-16 lg:py-24 border-b border-white/[0.06] overflow-hidden">
       
-      {/* Background Grid Pattern with Radial Mask */}
       <div className="absolute inset-0 bg-grid-mask pointer-events-none -z-10" />
 
-      {/* Decorative blurred glow blobs */}
       <div className="pointer-events-none absolute -left-20 top-10 h-72 w-72 rounded-full bg-blue-500/10 blur-3xl animate-pulse" />
       <div className="pointer-events-none absolute -right-20 top-20 h-80 w-80 rounded-full bg-emerald-500/10 blur-3xl" />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14 items-center">
           
-          {/* Left Column: Kinetic Editorial Headline */}
           <div className="lg:col-span-7 space-y-6 text-left relative z-10">
             
-            {/* Live Protocol Active Badge (Amber #FBBF24) */}
             <motion.div 
               initial={{ opacity: 0, y: -10 }}
               animate={{ opacity: 1, y: 0 }}
@@ -76,7 +72,6 @@ const Hero = ({ campaigns = [], onOpenHowItWorks, onOpenTutorial, onScrollToExpl
               <span>LIVE ON-CHAIN PROTOCOL • ZERO PLATFORM CUTS</span>
             </motion.div>
 
-            {/* Disciplined Scale Kinetic Headline */}
             <motion.div
               variants={textRevealContainer}
               initial="hidden"
@@ -92,7 +87,6 @@ const Hero = ({ campaigns = [], onOpenHowItWorks, onOpenTutorial, onScrollToExpl
               </motion.h1>
             </motion.div>
 
-            {/* Editorial Mission Statement */}
             <motion.p 
               initial={{ opacity: 0, y: 15 }}
               animate={{ opacity: 1, y: 0 }}
@@ -102,7 +96,6 @@ const Hero = ({ campaigns = [], onOpenHowItWorks, onOpenTutorial, onScrollToExpl
               AuraGiving executes native Ethereum non-custodial transactions. 100% of contributed funds route directly to verified causes without intermediary withholding or administration cuts.
             </motion.p>
 
-            {/* Primary Action Row (Sapphire #3B82F6 CTA) */}
             <motion.div 
               initial={{ opacity: 0, y: 15 }}
               animate={{ opacity: 1, y: 0 }}
@@ -125,7 +118,6 @@ const Hero = ({ campaigns = [], onOpenHowItWorks, onOpenTutorial, onScrollToExpl
               </button>
             </motion.div>
 
-            {/* Tabular Stats Strip with Data Hierarchy (#94A3B8) and Animated Counters */}
             <div className="pt-6 border-t border-white/[0.06] grid grid-cols-3 gap-4 max-w-lg">
               <div className="space-y-0.5">
                 <p className="text-[11px] font-mono text-[#94A3B8] uppercase tracking-wider">
@@ -157,10 +149,8 @@ const Hero = ({ campaigns = [], onOpenHowItWorks, onOpenTutorial, onScrollToExpl
 
           </div>
 
-          {/* Right Column: Structured Featured Node with Floating Badges */}
           <div className="lg:col-span-5 relative w-full">
             
-            {/* Floating Top Badge: Non-Custodial Direct Routing */}
             <motion.div
               initial={{ opacity: 0, x: 20 }}
               animate={{ opacity: 1, x: 0 }}
@@ -218,7 +208,6 @@ const Hero = ({ campaigns = [], onOpenHowItWorks, onOpenTutorial, onScrollToExpl
                     </p>
                   </div>
 
-                  {/* Campaign Progress Bar (#34D399 Mint Fill) */}
                   <div className="space-y-1.5 pt-1">
                     <div className="flex justify-between items-baseline text-xs font-mono">
                       <span className="text-slate-200 font-medium">
@@ -237,7 +226,6 @@ const Hero = ({ campaigns = [], onOpenHowItWorks, onOpenTutorial, onScrollToExpl
                     </div>
                   </div>
 
-                  {/* Actions: Primary Sapphire #3B82F6 */}
                   <div className="pt-2 flex items-center gap-2">
                     <button
                       onClick={() => setQuickDonateCampaign(featured)}
@@ -266,7 +254,6 @@ const Hero = ({ campaigns = [], onOpenHowItWorks, onOpenTutorial, onScrollToExpl
               </div>
             )}
 
-            {/* Floating Bottom Badge: Verified On-Chain Instant Receipt */}
             <motion.div
               initial={{ opacity: 0, y: 15 }}
               animate={{ opacity: 1, y: 0 }}

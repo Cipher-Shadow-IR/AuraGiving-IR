@@ -13,7 +13,6 @@ import {
 
 const StateContext = createContext();
 
-// Sample curated leisure causes for instant lively showcase
 export const SAMPLE_CAMPAIGNS = [
   {
     pId: 9901,
@@ -115,7 +114,6 @@ export const StateContextProvider = ({ children }) => {
 
   const provider = useMemo(() => getFallbackProvider(), []);
 
-  // Toast notification helper
   const showToast = useCallback((message, type = "info", txHash = null) => {
     const id = Date.now() + Math.random();
     setToasts((prev) => [...prev, { id, message, type, txHash }]);
@@ -128,7 +126,6 @@ export const StateContextProvider = ({ children }) => {
     setToasts((prev) => prev.filter((t) => t.id !== id));
   }, []);
 
-  // Toggle Bookmark
   const toggleBookmark = useCallback((pId) => {
     setBookmarks((prev) => {
       let updated;
@@ -148,7 +145,6 @@ export const StateContextProvider = ({ children }) => {
     });
   }, [showToast]);
 
-  // Fetch ETH Balance
   const fetchBalance = useCallback(async (userAddress) => {
     if (!userAddress) return;
     try {
@@ -165,7 +161,6 @@ export const StateContextProvider = ({ children }) => {
     }
   }, [provider]);
 
-  // Connect Wallet
   const connectWallet = useCallback(async () => {
     const ethereum = window.ethereum;
     if (!ethereum) {
@@ -190,7 +185,6 @@ export const StateContextProvider = ({ children }) => {
     }
   }, [fetchBalance, showToast]);
 
-  // Switch / Add Hardhat Local Network
   const switchNetwork = useCallback(async (targetChainId = CHAIN_ID) => {
     const ethereum = window.ethereum;
     if (!ethereum) return;
@@ -201,7 +195,6 @@ export const StateContextProvider = ({ children }) => {
         params: [{ chainId: hexChainId }],
       });
     } catch (switchError) {
-      // If chain not added to MetaMask (4902), add it
       if (switchError.code === 4902 || switchError.message?.includes("Unrecognized chain ID")) {
         try {
           await ethereum.request({
@@ -223,7 +216,6 @@ export const StateContextProvider = ({ children }) => {
     }
   }, [showToast]);
 
-  // Listen to account & chain changes
   useEffect(() => {
     const ethereum = window.ethereum;
     if (!ethereum) return undefined;
@@ -245,7 +237,6 @@ export const StateContextProvider = ({ children }) => {
     ethereum.on("accountsChanged", handleAccountsChanged);
     ethereum.on("chainChanged", handleChainChanged);
 
-    // Initial check if already connected
     ethereum.request({ method: "eth_accounts" }).then((accounts) => {
       if (accounts && accounts.length > 0) {
         setAddress(accounts[0]);
@@ -263,7 +254,6 @@ export const StateContextProvider = ({ children }) => {
     };
   }, [fetchBalance]);
 
-  // Contract instance
   const contract = useMemo(() => {
     if (address && window.ethereum) {
       const walletProvider = getWalletProvider();
@@ -272,7 +262,6 @@ export const StateContextProvider = ({ children }) => {
     return getContractRead(provider);
   }, [address, provider]);
 
-  // Create Campaign
   const createCampaign = async (form) => {
     if (!contract) throw new Error("Contract object is undefined");
     if (!address) throw new Error("Please connect your wallet first");
@@ -300,19 +289,16 @@ export const StateContextProvider = ({ children }) => {
     return tx;
   };
 
-  // Get All Campaigns
   const getCampaigns = async () => {
     try {
       const onChainData = await contract.getCampaigns();
 
       const parsedCampaigns = onChainData
         .map((campaign, i) => {
-          // If deleted campaign or zero target
           if (!campaign.owner || campaign.owner === ethers.constants.AddressZero || campaign.target.toString() === "0") {
             return null;
           }
 
-          // Deduce category or default
           let category = "Community";
           const desc = (campaign.description + " " + campaign.title).toLowerCase();
           if (desc.includes("water") || desc.includes("relief") || desc.includes("emergency") || desc.includes("flood") || desc.includes("crisis")) {
@@ -346,12 +332,10 @@ export const StateContextProvider = ({ children }) => {
         })
         .filter(Boolean);
 
-      // If no on-chain campaigns found yet (e.g. freshly started hardhat node), include curated sample causes
       if (parsedCampaigns.length === 0) {
         return SAMPLE_CAMPAIGNS;
       }
 
-      // If there are real campaigns, we combine real campaigns first then sample causes
       return [...parsedCampaigns, ...SAMPLE_CAMPAIGNS];
     } catch (error) {
       console.warn("Using sample causes fallback (smart contract not responding or empty):", error);
@@ -359,7 +343,6 @@ export const StateContextProvider = ({ children }) => {
     }
   };
 
-  // Get User's Created Campaigns
   const getUserCampaigns = async () => {
     const allCampaigns = await getCampaigns();
     if (!address) return [];
@@ -368,7 +351,6 @@ export const StateContextProvider = ({ children }) => {
     );
   };
 
-  // Get User's Backed / Donated Campaigns
   const getUserDonatedCampaigns = async () => {
     const allCampaigns = await getCampaigns();
     if (!address) return [];
@@ -380,11 +362,9 @@ export const StateContextProvider = ({ children }) => {
     });
   };
 
-  // Donate to Campaign
   const donate = async (pId, amount) => {
     if (!address) throw new Error("Please connect your wallet first");
 
-    // Check if it's a sample campaign (not deployed on-chain)
     if (pId >= 9000) {
       showToast(`Simulated donation of ${amount} ETH to sample cause! 💖`, "success");
       return { hash: "0x_mock_tx_sample" };
@@ -402,7 +382,6 @@ export const StateContextProvider = ({ children }) => {
     return tx;
   };
 
-  // Delete Campaign (Owner Only)
   const deleteCampaign = async (pId) => {
     if (!address) throw new Error("Please connect your wallet first");
 
@@ -418,7 +397,6 @@ export const StateContextProvider = ({ children }) => {
     return tx;
   };
 
-  // Get Donations for a Campaign
   const getDonations = async (pId) => {
     if (pId >= 9000) {
       const sample = SAMPLE_CAMPAIGNS.find((c) => c.pId === pId);

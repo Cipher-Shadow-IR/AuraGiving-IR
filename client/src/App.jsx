@@ -21,7 +21,6 @@ const App = () => {
   const [howItWorksOpen, setHowItWorksOpen] = useState(false);
   const [tutorialOpen, setTutorialOpen] = useState(false);
 
-  // Initialize Lenis Momentum Smooth Scrolling
   useEffect(() => {
     const lenis = new Lenis({
       duration: 1.2,
@@ -45,22 +44,17 @@ const App = () => {
   return (
     <div className="min-h-screen bg-[#f8fafc] dark:bg-[#000000] text-[#0f172a] dark:text-[#F3F4F6] flex flex-col relative selection:bg-blue-200 selection:text-blue-900 dark:selection:bg-emerald-500/20 dark:selection:text-emerald-400 transition-colors duration-200">
       
-      {/* Brand Preloader */}
       <AuraPreloader />
 
-      {/* Route change scroll restoration */}
       <ScrollToTop />
 
-      {/* Interactive Cursor Spotlight Glow */}
       <SpotlightGlow />
 
-      {/* Floating Pill Header */}
       <Navbar 
         onOpenHowItWorks={() => setHowItWorksOpen(true)}
         onOpenTutorial={() => setTutorialOpen(true)}
       />
 
-      {/* Main Viewport with AnimatePresence Page Transitions */}
       <main className="flex-1 overflow-hidden">
         <AnimatePresence mode="wait" initial={false}>
           <Routes location={location} key={location.pathname}>
@@ -103,7 +97,6 @@ const App = () => {
         </AnimatePresence>
       </main>
 
-      {/* Modals & Notifications */}
       <QuickDonateModal />
       <HowItWorksModal 
         isOpen={howItWorksOpen} 
@@ -115,7 +108,6 @@ const App = () => {
       />
       <Toast />
 
-      {/* Minimal Footer */}
       <Footer 
         onOpenHowItWorks={() => setHowItWorksOpen(true)} 
       />
