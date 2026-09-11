@@ -1,141 +1,156 @@
-# 🌟 AuraGiving • Decentralized Web3 Charity & Philanthropy DApp
+<p align="center">
+  <img src="client/public/AURAGIVING_LOGO.png" alt="AuraGiving Logo" width="160" />
+</p>
 
-![License](https://img.shields.io/badge/license-MIT-emerald)
-![Solidity](https://img.shields.io/badge/Solidity-%5E0.8.9-blue)
-![React](https://img.shields.io/badge/React-18.2-cyan)
-![TailwindCSS](https://img.shields.io/badge/TailwindCSS-3.4-teal)
-![Framer Motion](https://img.shields.io/badge/Framer_Motion-10.18-purple)
+<p align="center">
+  <img src="https://img.shields.io/badge/AuraGiving-Web3%20Philanthropy-34d399?style=for-the-badge&logo=ethereum" alt="AuraGiving Banner" />
+</p>
 
-**AuraGiving** is a serene, luxury, and transparent decentralized application (DApp) designed to transform charitable giving on the Ethereum blockchain. By leveraging non-custodial smart contracts, AuraGiving routes **100% of all contributed ETH directly to the campaign creator's wallet** with zero platform cuts, instantaneous on-chain verification, and complete public auditability.
+<p align="center">
+  <img src="https://readme-typing-svg.herokuapp.com?font=Plus+Jakarta+Sans&size=32&duration=4000&color=34D399&center=true&vCenter=true&width=1000&height=70&lines=AuraGiving+%7C+Decentralized+Non-Custodial+Philanthropy;Zero+Platform+Deductions+%7C+100%25+Direct+To+Verified+Causes" alt="Typing SVG" />
+</p>
+
+<h2 align="center">💚 Zero-Deduction Non-Custodial Web3 Philanthropy Protocol.</h2>
+
+<p align="center">
+  <img src="https://img.shields.io/badge/Status-Active-success?style=for-the-badge" />
+  <img src="https://img.shields.io/badge/Version-1.0.0-blue?style=for-the-badge" />
+  <img src="https://img.shields.io/badge/Solidity-0.8.9-purple?style=for-the-badge&logo=solidity" />
+  <img src="https://img.shields.io/badge/Built%20With-React%2018%20%7C%20Vite%20%7C%20Framer%20Motion-black?style=for-the-badge" />
+</p>
+
+---
+> *"Decentralized, non-custodial Web3 philanthropy protocol on Ethereum."*  
+> **AuraGiving** is a transparent, zero-deduction charity donation platform built on Ethereum.  
+> Designed with **Solidity 0.8.9**, **React 18**, **Framer Motion**, **Lenis**, and **Tailwind CSS** to route 100% of donor contributions directly to verified humanitarian and educational causes.
 
 ---
 
-## ✨ Features & Highlights
+# ✨ Features
 
-- **🧭 Floating Leisure Navigation**: Real-time ETH balance tracker, wallet menu with 1-click address copy, explorer audit links, and live network badge (`🟢 Hardhat #31337`).
-- **🚀 Cinematic Discovery & Metrics**: Dynamic platform statistics (Total ETH Donated, Active Causes, Global Donors, Verified On-Chain), Featured Cause spotlight, category filtering, instant debounce search, and sorting.
-- **💖 Interactive Quick Donate & Confetti**: Donate instantly from campaign cards with preset ETH buttons (`0.02`, `0.05`, `0.1`, `0.25`, `0.5`, `1.0 ETH`), live impact estimation preview, and celebratory confetti.
-- **💎 Immersive Story & Backer Leaderboard**: Dual-column campaign showcase with mission narrative, transparency callout, top champion ranking crowns (🥇 1st, 🥈 2nd, 🥉 3rd), and on-chain donor address history.
-- **🎨 Real-Time Campaign Creator Studio**: Split-screen live preview that renders card updates in real-time, 1-click curated royalty-free image library, and deadline duration shortcuts.
-- **👤 Philanthropist Dashboard**: Personal user metrics, created causes management (with owner deletion controls), backed causes history, and saved bookmarks.
-- **🎓 Interactive Guided Onboarding Tutorial**: Step-by-step interactive walkthrough explaining Web3 philanthropy, wallet setup, smart contract execution, and blockchain transparency.
-- **✨ Smooth Animations**: Powered by `framer-motion` for fluid entrance transitions, layout shifts, spring modals, and ambient glowing orbs.
+- 💚 **100% Direct Giving** — Zero middleman cuts or administrative platform deductions.
+- 🤝 **Non-Custodial Escrow** — Smart contracts route funds instantly to recipient wallets without intermediate holding.
+- ⚡ **Momentum Smooth Scroll & Motion** — Powered by Lenis smooth scrolling, Framer Motion page transitions, and confetti animations.
+- 💸 **Quick Donate Modal** — One-click preset donation buttons (0.01, 0.05, 0.1 ETH) with custom input fields.
+- 📖 **Interactive Protocol Guides** — Built-in "How It Works" and "Tutorial" modal walkthroughs for onboarding new Web3 donors.
+- 🌙 **Dual Theme Support** — Cool marble light mode & dark midnight aesthetic with crisp typography.
+- 🔍 **Real-Time Cause Explorer** — Search humanitarian campaigns, track progress towards targets, and inspect donor addresses.
 
 ---
 
-## 🛠️ Architecture & Tech Stack
+# 💡 Why This Project?
 
+This platform demonstrates:
+
+- **Non-Profit Web3 Engineering**: Removing third-party transaction fees to maximize real-world impact.
+- **Polished UI Engineering**: Modal overlays, toast notifications, interactive spotlight cursor glow, and live progress bars.
+- **Audited On-Chain Records**: Transparent donor logs for full public verification.
+
+---
+
+# 🧩 Tech Stack
+
+| Layer | Technology |
+|-------|-----------|
+| Smart Contract | Solidity `^0.8.9`, Hardhat |
+| Client | React 18, Vite 3, Tailwind CSS 3, Ethers.js 5 |
+| Motion & Polish | Framer Motion 10.18, Lenis 1.3, Canvas Confetti |
+| Design System | Lucide React Icons, Custom State Context |
+
+---
+
+# 📂 Project Structure
+
+```plaintext
+Charity Donation Platform/Charity-Donation-Blockchain-System-main/
+├── web3/
+│   ├── contracts/
+│   │   └── CrowdFunding.sol    # Core Solidity Philanthropy Contract
+│   ├── hardhat.config.js
+│   └── scripts/
+│       └── deploy.js           # Contract deployment script
+├── client/
+│   ├── public/
+│   │   └── AURAGIVING_LOGO.png # Official AuraGiving Brand Asset
+│   ├── src/
+│   │   ├── components/         # Navbar, Footer, Hero, CampaignCard, QuickDonateModal, etc.
+│   │   ├── context/            # Web3 Context state provider
+│   │   ├── pages/              # Home, CreateCampaign, CampaignDetails, Profile
+│   │   ├── config/             # Contract addresses & ABIs
+│   │   ├── index.css           # Global Tailwind styles & light mode rules
+│   │   ├── App.jsx             # Main App layout & routes
+│   │   └── main.jsx            # Entry point
+│   ├── index.html
+│   └── package.json
+└── README.md
 ```
-React v18 + Vite + Tailwind CSS + Framer Motion
-                  │
-                  ▼
-         ethers.js v5 Provider
-                  │
-                  ▼
-         CharityDonation.sol
-    (Ethereum Solidity Smart Contract)
-                  │
-                  ▼
-     Localhost:8545 / Sepolia Testnet
-```
-
-### Frontend
-- **React 18** & **Vite**
-- **Tailwind CSS** (Custom Glassmorphism, Aurora & Dark Palette)
-- **Framer Motion** (Fluid Animations, Staggered Grid, Spring Modals)
-- **Lucide React** (Modern Clean Icons)
-- **Canvas Confetti** (Celebratory Donation Effects)
-
-### Smart Contract & Blockchain
-- **Solidity ^0.8.9** (`CharityDonation.sol`)
-- **Hardhat** (Local EVM Node, Compilation & Deployment)
-- **ethers.js v5** (Web3 Provider & Signer Management)
 
 ---
 
-## 🚀 Quickstart Guide
+# ⚙️ Installation & Local Setup
 
-### 1. Prerequisites
-- **Node.js v18+** installed
-- **MetaMask** browser extension installed
+### Prerequisites
+- Node.js 18+
+- MetaMask browser extension
 
-### 2. Clone & Install Dependencies
+### 1. Install Client Dependencies
+
 ```bash
-git clone https://github.com/Cipher-Shadow-IR/auragiving-web3-charity-dapp.git
-cd auragiving-web3-charity-dapp
-```
+# Clone repository
+git clone https://github.com/Cipher-Shadow-IR/AuraGiving-Web3-Charity.git
+cd "Charity Donation Platform/Charity-Donation-Blockchain-System-main/client"
 
-Install smart contract dependencies:
-```bash
-cd charitydonation
+# Install node modules
 npm install
 ```
 
-Install frontend client dependencies:
+### 2. Run Development Server
+
 ```bash
-cd ../client
-npm install
-```
-
----
-
-### 3. Start Local Hardhat Node & Deploy
-
-In **Terminal 1** (Start local EVM blockchain):
-```bash
-cd charitydonation
-npx hardhat node
-```
-> Runs a local Ethereum node at `http://localhost:8545` with 20 pre-funded test accounts (10,000 ETH each).
-
-In **Terminal 2** (Deploy the smart contract):
-```bash
-cd charitydonation
-npx hardhat run scripts/deploy.js --network localhost
-```
-> Smart contract deploys to `0x5FbDB2315678afecb367f032d93F642f64180aa3`.
-
----
-
-### 4. Start the Frontend
-
-In **Terminal 3**:
-```bash
-cd client
 npm run dev
 ```
-Open **[http://localhost:5173](http://localhost:5173)** in your browser.
+
+Open [http://localhost:5173](http://localhost:5173).
+
+### 3. Build for Production
+
+```bash
+npm run build
+```
 
 ---
 
-### 5. Configure MetaMask for Localhost
+# 📬 Smart Contract API Reference
 
-1. Open **MetaMask** → Network Selector → **Add a Network Manually**.
-2. Enter the following details:
-   - **Network Name**: `Local Hardhat`
-   - **RPC URL**: `http://localhost:8545`
-   - **Chain ID**: `31337`
-   - **Currency Symbol**: `ETH`
-3. Click **Save**.
-4. Import one of Hardhat's pre-funded private keys to test instant transactions:
-   ```
-   0xac0974bec39a17e36ba4a6b4d238ff944bacb478cbed5efcae784d7bf4f2ff80
-   ```
+### Contract Methods
+
+| Function | Access | Parameters | Description |
+|----------|--------|------------|-------------|
+| `createCampaign` | Public | `address _owner, string _title, string _description, uint256 _target, uint256 _deadline, string _image` | Creates a new charity cause |
+| `donateToCampaign` | Payable | `uint256 _id` | Routes ETH directly to the cause owner |
+| `getDonators` | View | `uint256 _id` | Returns list of donor addresses and amounts |
+| `getCampaigns` | View | — | Returns array of all active & completed causes |
 
 ---
 
-## 📄 Smart Contract Functions
+# 💬 Author
 
-| Function | Type | Description |
-| :--- | :--- | :--- |
-| `createCampaign(...)` | `nonpayable` | Registers a new campaign with target, deadline, story, and image |
-| `donateToCampaign(uint256 id)` | `payable` | Transfers ETH directly to campaign creator wallet and logs donation |
-| `getCampaigns()` | `view` | Returns all active campaigns and metadata |
-| `getDonators(uint256 id)` | `view` | Returns donor addresses and contributed amounts for leaderboard |
-| `deleteCampaign(uint256 id)` | `nonpayable` | Allows campaign creator to delete their campaign from directory |
+<p align="center">
+  <b>Designed & Developed by Ishaan Ray (Cipher Shadow)</b><br>
+  <i>"Decentralized, non-custodial Web3 philanthropy protocol on Ethereum."</i><br><br>
+  <a href="https://github.com/Cipher-Shadow-IR" target="_blank">
+    <img src="https://img.shields.io/badge/GitHub-Cipher%20Shadow-181717?style=for-the-badge&logo=github" />
+  </a>
+  <a href="https://linkedin.com/in/ishaan-ray-cs" target="_blank">
+    <img src="https://img.shields.io/badge/LinkedIn-Ishaan%20Ray-0A66C2?style=for-the-badge&logo=linkedin" />
+  </a>
+  <a href="https://galaxir.vercel.app/" target="_blank">
+    <img src="https://img.shields.io/badge/Portfolio-Galaxir-6366F1?style=for-the-badge" />
+  </a>
+</p>
 
 ---
 
-## 🛡️ License
+# 📜 License
 
-This project is licensed under the MIT License.
+MIT License © Ishaan Ray

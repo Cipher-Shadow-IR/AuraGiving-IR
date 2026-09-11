@@ -4,7 +4,140 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Light Theme Complete Contrast Overrides */
+html.light,
+html.light body,
+.light,
+.light body {
+  background-color: #f8fafc !important;
+  color: #0f172a !important;
+}
+
+html.light h1, html.light h2, html.light h3, html.light h4,
+.light h1, .light h2, .light h3, .light h4 {
+  color: #0f172a !important;
+}
+
+/* Base Surfaces & Dark Hex Overrides */
+html.light .bg-\[\#000000\],
+html.light .bg-\[\#0A0D14\],
+html.light .bg-\[\#0a0d14\],
+html.light .bg-\[\#07090E\],
+html.light .bg-surface-base,
+html.light .bg-surface-pure,
+.light .bg-\[\#000000\],
+.light .bg-\[\#0A0D14\],
+.light .bg-\[\#0a0d14\],
+.light .bg-\[\#07090E\],
+.light .bg-surface-base,
+.light .bg-surface-pure {
+  background-color: #f8fafc !important;
+}
+
+html.light .bg-\[\#161B26\],
+html.light .bg-\[\#161b26\],
+html.light .bg-\[\#1C2331\],
+html.light .bg-\[\#0F131C\],
+html.light .bg-surface-card,
+html.light .bg-surface-input,
+.light .bg-\[\#161B26\],
+.light .bg-\[\#161b26\],
+.light .bg-\[\#1C2331\],
+.light .bg-\[\#0F131C\],
+.light .bg-surface-card,
+.light .bg-surface-input {
+  background-color: #ffffff !important;
+}
+
+html.light .hover\:bg-\[\#1C2331\]:hover,
+html.light .hover\:bg-\[\#161B26\]:hover,
+.light .hover\:bg-\[\#1C2331\]:hover,
+.light .hover\:bg-\[\#161B26\]:hover {
+  background-color: #f1f5f9 !important;
+}
+
+html.light .text-white,
+html.light .text-\[\#F3F4F6\],
+.light .text-white,
+.light .text-\[\#F3F4F6\] {
+  color: #0f172a !important;
+}
+
+html.light .text-slate-200,
+html.light .text-slate-300,
+.light .text-slate-200,
+.light .text-slate-300 {
+  color: #1e293b !important;
+}
+
+html.light .text-\[\#94A3B8\],
+html.light .text-slate-400,
+html.light .text-data,
+.light .text-\[\#94A3B8\],
+.light .text-slate-400,
+.light .text-data {
+  color: #475569 !important;
+}
+
+html.light .border-white\/\[0\.08\],
+html.light .border-white\/\[0\.04\],
+html.light .border-white\/\[0\.06\],
+html.light .border-white\/\[0\.1\],
+html.light .border-white\/\[0\.12\],
+html.light .border-white\/\[0\.16\],
+html.light .border-white\/10,
+html.light .border-white\/20,
+html.light .border-surface-border,
+.light .border-white\/\[0\.08\],
+.light .border-white\/\[0\.04\],
+.light .border-white\/\[0\.06\],
+.light .border-white\/\[0\.1\],
+.light .border-white\/\[0\.12\],
+.light .border-white\/\[0\.16\],
+.light .border-white\/10,
+.light .border-white\/20,
+.light .border-surface-border {
+  border-color: rgba(0, 0, 0, 0.08) !important;
+}
+
+html.light .gradient-border,
+.light .gradient-border {
+  background: #ffffff !important;
+}
+
+html.light .gradient-border::before,
+.light .gradient-border::before {
+  background: linear-gradient(135deg, rgba(0, 0, 0, 0.08) 0%, rgba(0, 0, 0, 0.02) 100%) !important;
+}
+
+html.light .bg-grid-mask,
+.light .bg-grid-mask {
+  background-image: linear-gradient(to right, rgba(0, 0, 0, 0.04) 1px, transparent 1px),
+                    linear-gradient(to bottom, rgba(0, 0, 0, 0.04) 1px, transparent 1px) !important;
+}
+
+.light ::selection {
+  background: rgba(59, 130, 246, 0.2);
+  color: #1e40af;
+}
+
+.light ::-webkit-scrollbar-track {
+  background: #f1f5f9;
+}
+
+.light ::-webkit-scrollbar-thumb {
+  background: #cbd5e1;
+}
+
+.light ::-webkit-scrollbar-thumb:hover {
+  background: #94a3b8;
+}
+
 @layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+
   html.lenis {
     height: auto;
   }
@@ -94,8 +227,8 @@
 
 /* Custom Minimalist Scrollbar */
 ::-webkit-scrollbar {
-  width: 5px;
-  height: 5px;
+  width: 6px;
+  height: 6px;
 }
 
 ::-webkit-scrollbar-track {
@@ -103,15 +236,37 @@
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #1C2331;
-  border-radius: 2px;
+  background: #1E293B;
+  border-radius: 9999px;
+  transition: background-color 0.2s ease;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: #2D3748;
+  background: #3B82F6;
 }
 
 input[type="date"]::-webkit-calendar-picker-indicator {
   cursor: pointer;
   filter: invert(0.8);
+}
+
+@keyframes marquee {
+  from { transform: translateX(0%); }
+  to { transform: translateX(-50%); }
+}
+
+.animate-marquee {
+  animation: marquee 30s linear infinite;
+}
+
+/* Motion Accessibility */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
 }

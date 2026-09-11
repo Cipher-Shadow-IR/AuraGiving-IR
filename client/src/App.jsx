@@ -13,6 +13,7 @@ import {
 import SpotlightGlow from './components/SpotlightGlow';
 import PageTransition from './components/PageTransition';
 import ScrollToTop from './components/ScrollToTop';
+import AuraPreloader from './components/AuraPreloader';
 import { CampaignDetails, CreateCampaign, Home, Profile } from './pages';
 
 const App = () => {
@@ -42,8 +43,11 @@ const App = () => {
   }, []);
 
   return (
-    <div className="min-h-screen bg-[#000000] text-[#F3F4F6] flex flex-col relative selection:bg-emerald-500/20 selection:text-emerald-400">
+    <div className="min-h-screen bg-[#f8fafc] dark:bg-[#000000] text-[#0f172a] dark:text-[#F3F4F6] flex flex-col relative selection:bg-blue-200 selection:text-blue-900 dark:selection:bg-emerald-500/20 dark:selection:text-emerald-400 transition-colors duration-200">
       
+      {/* Brand Preloader */}
+      <AuraPreloader />
+
       {/* Route change scroll restoration */}
       <ScrollToTop />
 

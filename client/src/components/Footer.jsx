@@ -12,9 +12,7 @@ const Footer = ({ onOpenHowItWorks }) => {
           
           <div className="space-y-1.5">
             <Link to="/" className="flex items-center gap-2 text-white font-semibold text-sm">
-              <div className="w-6 h-6 rounded-lg bg-[#3B82F6]/10 border border-[#3B82F6]/30 flex items-center justify-center text-[#3B82F6]">
-                <HeartHandshake className="w-3.5 h-3.5" />
-              </div>
+              <img src="/AURAGIVING_LOGO.png" alt="AuraGiving Logo" className="w-6 h-6 object-contain shrink-0" />
               <span className="font-bold font-display">AuraGiving</span>
             </Link>
             <p className="text-[#94A3B8] max-w-sm text-[11px] leading-relaxed">

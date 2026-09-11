@@ -11,3 +11,5 @@ export { default as QuickDonateModal } from './QuickDonateModal';
 export { default as HowItWorksModal } from './HowItWorksModal';
 export { default as TutorialModal } from './TutorialModal';
 export { default as Footer } from './Footer';
+export { default as CountUp } from './CountUp';
+export { default as Marquee } from './Marquee';
