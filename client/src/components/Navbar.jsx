@@ -25,6 +25,7 @@ const Navbar = ({ onOpenHowItWorks, onOpenTutorial }) => {
     balance, 
     chainId, 
     connectWallet, 
+    disconnectWallet, 
     isConnecting, 
     switchNetwork,
     showToast 
@@ -190,6 +191,15 @@ const Navbar = ({ onOpenHowItWorks, onOpenTutorial }) => {
                         <Plus className="w-3.5 h-3.5" />
                         <span>Launch Cause</span>
                       </Link>
+                      <button
+                        onClick={() => {
+                          setProfileDropdownOpen(false);
+                          disconnectWallet();
+                        }}
+                        className="w-full flex items-center justify-center gap-2 px-3 py-2 text-xs font-semibold text-rose-300 hover:text-white hover:bg-rose-500/10 border border-rose-500/25 rounded-lg transition-colors mt-2 cursor-pointer"
+                      >
+                        Disconnect
+                      </button>
                     </div>
                   </div>
                 )}
@@ -290,6 +300,15 @@ const Navbar = ({ onOpenHowItWorks, onOpenTutorial }) => {
                   <span className="text-[#34D399] font-bold">{balance} ETH</span>
                 </div>
                 <div className="truncate text-white pt-1">{address}</div>
+                <button
+                  onClick={() => {
+                    setMobileMenuOpen(false);
+                    disconnectWallet();
+                  }}
+                  className="w-full mt-2 py-2 rounded-lg border border-rose-500/25 bg-rose-500/10 text-xs font-semibold text-rose-300 cursor-pointer"
+                >
+                  Disconnect
+                </button>
               </div>
             )}
           </div>

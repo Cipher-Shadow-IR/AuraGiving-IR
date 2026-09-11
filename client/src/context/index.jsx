@@ -161,6 +161,13 @@ export const StateContextProvider = ({ children }) => {
     }
   }, [provider]);
 
+  const disconnectWallet = useCallback(() => {
+    setAddress(null);
+    setBalance("0.00");
+    setChainId(null);
+    showToast("Wallet disconnected", "info");
+  }, [showToast]);
+
   const connectWallet = useCallback(async () => {
     const ethereum = window.ethereum;
     if (!ethereum) {
@@ -436,6 +443,7 @@ export const StateContextProvider = ({ children }) => {
         deleteCampaign,
         getDonations,
         connectWallet,
+        disconnectWallet,
         switchNetwork,
         isConnecting,
         bookmarks,

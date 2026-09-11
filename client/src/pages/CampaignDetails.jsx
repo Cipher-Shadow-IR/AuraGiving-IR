@@ -401,8 +401,8 @@ const CampaignDetails = () => {
                 <div className="relative">
                   <input
                     type="number"
-                    step="0.001"
-                    min="0.0001"
+                    step="any"
+                    min="0"
                     placeholder="0.1"
                     value={isCustom ? customAmount : amount}
                     onChange={(e) => {
