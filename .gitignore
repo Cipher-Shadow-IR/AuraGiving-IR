@@ -16,9 +16,16 @@ yarn-error.log*
 
 # Environment
 .env
-.env.local
-.env.production
-.env.*.local
+.env.*
+!.env.example
+
+# Private keys & credentials
+*.pem
+*.key
+*.p12
+*.pfx
+service-account*.json
+credentials*.json
 
 # OS & Editor
 .DS_Store

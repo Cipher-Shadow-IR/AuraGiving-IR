@@ -23,4 +23,11 @@ dist-ssr
 *.sln
 *.sw?
 
+# Environment
 .env
+.env.*
+!.env.example
+
+# Private keys & credentials
+*.pem
+*.key
