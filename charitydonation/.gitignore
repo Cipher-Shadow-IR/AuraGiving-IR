@@ -1,9 +1,17 @@
 node_modules
 .env
+.env.*
+!.env.example
 coverage
 coverage.json
 typechain
 typechain-types
+
+# Private keys & credentials
+*.pem
+*.key
+service-account*.json
+credentials*.json
 
 #Hardhat files
 cache*

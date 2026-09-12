@@ -67,7 +67,7 @@ const TUTORIAL_STEPS = [
           </div>
           <div className="flex items-center gap-2 text-slate-300">
             <span className="text-[#3B82F6] font-bold">02</span>
-            <span>Switch to Local Hardhat (RPC 8545) or Sepolia</span>
+            <span>Switch to Sepolia (Ethereum testnet, Chain ID 11155111)</span>
           </div>
           <div className="flex items-center gap-2 text-slate-300">
             <span className="text-[#3B82F6] font-bold">03</span>

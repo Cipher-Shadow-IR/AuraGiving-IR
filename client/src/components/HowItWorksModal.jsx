@@ -72,16 +72,18 @@ const HowItWorksModal = ({ isOpen, onClose }) => {
             <span>{NETWORK_NAME} (Chain #{CHAIN_ID})</span>
           </div>
           <div className="flex items-center justify-between gap-2 text-slate-200">
-            <span className="truncate">{CONTRACT_ADDRESS}</span>
-            <a
-              href={`${EXPLORER_URL}/address/${CONTRACT_ADDRESS}`}
-              target="_blank"
-              rel="noreferrer"
-              className="text-[#3B82F6] hover:underline inline-flex items-center gap-1 flex-shrink-0"
-            >
-              <span>Audit</span>
-              <ExternalLink className="w-3 h-3" />
-            </a>
+            <span className="truncate">{CONTRACT_ADDRESS || "Not configured"}</span>
+            {CONTRACT_ADDRESS && (
+              <a
+                href={`${EXPLORER_URL}/address/${CONTRACT_ADDRESS}`}
+                target="_blank"
+                rel="noreferrer"
+                className="text-[#3B82F6] hover:underline inline-flex items-center gap-1 flex-shrink-0"
+              >
+                <span>Audit</span>
+                <ExternalLink className="w-3 h-3" />
+              </a>
+            )}
           </div>
         </div>
 

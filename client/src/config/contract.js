@@ -1,15 +1,19 @@
 import { ethers } from "ethers";
 import { abi } from "./abi";
 
-export const CONTRACT_ADDRESS = "0x9fE46736679d2D9a65F0992F2272dE9f3c7fa6e0";
+export const CONTRACT_ADDRESS = (import.meta.env.VITE_CONTRACT_ADDRESS || "").trim();
 
-export const CHAIN_ID = 31337;
+export const CHAIN_ID = Number(import.meta.env.VITE_CHAIN_ID || 11155111);
 
-export const RPC_URL = "http://localhost:8545";
+export const RPC_URL =
+  import.meta.env.VITE_RPC_URL || "https://ethereum-sepolia-rpc.publicnode.com";
 
-export const NETWORK_NAME = "Local Hardhat";
+export const NETWORK_NAME = import.meta.env.VITE_NETWORK_NAME || "Sepolia";
 
-export const EXPLORER_URL = "https://sepolia.etherscan.io";
+export const EXPLORER_URL =
+  import.meta.env.VITE_EXPLORER_URL || "https://sepolia.etherscan.io";
+
+export const hasContractConfig = Boolean(CONTRACT_ADDRESS);
 
 export const getFallbackProvider = () =>
   new ethers.providers.JsonRpcProvider(RPC_URL);
@@ -22,7 +26,7 @@ export const getWalletProvider = () => {
 };
 
 export const getContractRead = (provider) =>
-  new ethers.Contract(CONTRACT_ADDRESS, abi, provider);
+  CONTRACT_ADDRESS ? new ethers.Contract(CONTRACT_ADDRESS, abi, provider) : null;
 
 export const getContractWrite = (signer) =>
-  new ethers.Contract(CONTRACT_ADDRESS, abi, signer);
+  CONTRACT_ADDRESS ? new ethers.Contract(CONTRACT_ADDRESS, abi, signer) : null;

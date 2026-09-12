@@ -5,10 +5,11 @@ import {
   getWalletProvider,
   getContractRead,
   getContractWrite,
-  CONTRACT_ADDRESS,
   CHAIN_ID,
   RPC_URL,
   NETWORK_NAME,
+  EXPLORER_URL,
+  hasContractConfig,
 } from "../config/contract";
 
 const StateContext = createContext();
@@ -112,6 +113,8 @@ export const StateContextProvider = ({ children }) => {
   const [toasts, setToasts] = useState([]);
   const [quickDonateCampaign, setQuickDonateCampaign] = useState(null);
 
+  const isWrongNetwork = Boolean(address && chainId && chainId !== CHAIN_ID);
+
   const provider = useMemo(() => getFallbackProvider(), []);
 
   const showToast = useCallback((message, type = "info", txHash = null) => {
@@ -194,13 +197,14 @@ export const StateContextProvider = ({ children }) => {
 
   const switchNetwork = useCallback(async (targetChainId = CHAIN_ID) => {
     const ethereum = window.ethereum;
-    if (!ethereum) return;
+    if (!ethereum) return false;
     const hexChainId = "0x" + targetChainId.toString(16);
     try {
       await ethereum.request({
         method: "wallet_switchEthereumChain",
         params: [{ chainId: hexChainId }],
       });
+      return true;
     } catch (switchError) {
       if (switchError.code === 4902 || switchError.message?.includes("Unrecognized chain ID")) {
         try {
@@ -212,16 +216,32 @@ export const StateContextProvider = ({ children }) => {
                 chainName: NETWORK_NAME,
                 rpcUrls: [RPC_URL],
                 nativeCurrency: { name: "Ether", symbol: "ETH", decimals: 18 },
+                blockExplorerUrls: [EXPLORER_URL],
               },
             ],
           });
+          return true;
         } catch (addError) {
           console.error("Failed to add network:", addError);
           showToast("Failed to add network to MetaMask", "error");
+          return false;
         }
       }
+      return false;
     }
   }, [showToast]);
+
+  const ensureCorrectNetwork = useCallback(async () => {
+    if (address && chainId && chainId !== CHAIN_ID) {
+      showToast(
+        `${NETWORK_NAME} (Chain ID ${CHAIN_ID}) is required for on-chain actions.`,
+        "error"
+      );
+      await switchNetwork(CHAIN_ID);
+      return false;
+    }
+    return true;
+  }, [address, chainId, showToast, switchNetwork]);
 
   useEffect(() => {
     const ethereum = window.ethereum;
@@ -270,8 +290,11 @@ export const StateContextProvider = ({ children }) => {
   }, [address, provider]);
 
   const createCampaign = async (form) => {
-    if (!contract) throw new Error("Contract object is undefined");
+    if (!contract) throw new Error("Contract not configured. Set VITE_CONTRACT_ADDRESS and rebuild.");
     if (!address) throw new Error("Please connect your wallet first");
+    if (!(await ensureCorrectNetwork())) {
+      throw new Error(`Please switch to ${NETWORK_NAME} (Chain ID ${CHAIN_ID}) and try again.`);
+    }
 
     const target = ethers.BigNumber.isBigNumber(form.target)
       ? form.target
@@ -298,6 +321,8 @@ export const StateContextProvider = ({ children }) => {
 
   const getCampaigns = async () => {
     try {
+      if (!contract) return SAMPLE_CAMPAIGNS;
+
       const onChainData = await contract.getCampaigns();
 
       const parsedCampaigns = onChainData
@@ -370,11 +395,16 @@ export const StateContextProvider = ({ children }) => {
   };
 
   const donate = async (pId, amount) => {
+    if (!contract) throw new Error("Contract not configured. Set VITE_CONTRACT_ADDRESS and rebuild.");
     if (!address) throw new Error("Please connect your wallet first");
 
     if (pId >= 9000) {
       showToast(`Simulated donation of ${amount} ETH to sample cause! 💖`, "success");
       return { hash: "0x_mock_tx_sample" };
+    }
+
+    if (!(await ensureCorrectNetwork())) {
+      throw new Error(`Please switch to ${NETWORK_NAME} (Chain ID ${CHAIN_ID}) and try again.`);
     }
 
     showToast(`Initiating donation of ${amount} ETH...`, "info");
@@ -390,11 +420,16 @@ export const StateContextProvider = ({ children }) => {
   };
 
   const deleteCampaign = async (pId) => {
+    if (!contract) throw new Error("Contract not configured. Set VITE_CONTRACT_ADDRESS and rebuild.");
     if (!address) throw new Error("Please connect your wallet first");
 
     if (pId >= 9000) {
       showToast("Sample campaigns cannot be deleted from chain", "info");
       return;
+    }
+
+    if (!(await ensureCorrectNetwork())) {
+      throw new Error(`Please switch to ${NETWORK_NAME} (Chain ID ${CHAIN_ID}) and try again.`);
     }
 
     showToast("Deleting campaign...", "info");
@@ -434,6 +469,8 @@ export const StateContextProvider = ({ children }) => {
         address,
         balance,
         chainId,
+        isWrongNetwork,
+        hasContractConfig,
         contract,
         createCampaign,
         getCampaigns,
@@ -445,6 +482,7 @@ export const StateContextProvider = ({ children }) => {
         connectWallet,
         disconnectWallet,
         switchNetwork,
+        ensureCorrectNetwork,
         isConnecting,
         bookmarks,
         toggleBookmark,

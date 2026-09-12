@@ -24,6 +24,7 @@ const Navbar = ({ onOpenHowItWorks, onOpenTutorial }) => {
     address, 
     balance, 
     chainId, 
+    isWrongNetwork,
     connectWallet, 
     disconnectWallet, 
     isConnecting, 
@@ -236,6 +237,23 @@ const Navbar = ({ onOpenHowItWorks, onOpenTutorial }) => {
 
         </div>
       </div>
+
+      {isWrongNetwork && (
+        <div className="w-full bg-[#FBBF24]/10 border-t border-[#FBBF24]/20 px-4 py-2">
+          <div className="max-w-7xl mx-auto flex items-center justify-between gap-3 text-xs">
+            <p className="text-[#FBBF24]">
+              You're on the wrong network. AuraGiving requires{" "}
+              <span className="font-semibold">{NETWORK_NAME}</span> (Chain ID #{CHAIN_ID}).
+            </p>
+            <button
+              onClick={() => switchNetwork(CHAIN_ID)}
+              className="px-3 py-1.5 rounded-md bg-[#FBBF24] text-[#0A0D14] font-semibold hover:bg-[#FCD34D] transition-colors cursor-pointer whitespace-nowrap shrink-0"
+            >
+              Switch to {NETWORK_NAME}
+            </button>
+          </div>
+        </div>
+      )}
 
       {mobileMenuOpen && (
         <div className="lg:hidden border-b border-white/[0.08] light:border-black/[0.08] bg-[#0A0D14]/95 light:bg-[#f8fafc]/95 backdrop-blur-2xl px-6 py-5 space-y-4">

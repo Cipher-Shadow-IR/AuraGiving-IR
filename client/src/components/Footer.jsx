@@ -40,15 +40,19 @@ const Footer = ({ onOpenHowItWorks }) => {
         <div className="pt-6 border-t border-white/[0.04] flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 font-mono text-[11px] text-[#94A3B8]">
           <div className="flex items-center gap-2">
             <span>Contract ({NETWORK_NAME}):</span>
-            <a
-              href={`${EXPLORER_URL}/address/${CONTRACT_ADDRESS}`}
-              target="_blank"
-              rel="noreferrer"
-              className="text-slate-300 hover:text-[#3B82F6] inline-flex items-center gap-1"
-            >
-              <span>{CONTRACT_ADDRESS.slice(0, 10)}...{CONTRACT_ADDRESS.slice(-8)}</span>
-              <ExternalLink className="w-3 h-3" />
-            </a>
+            {CONTRACT_ADDRESS ? (
+              <a
+                href={`${EXPLORER_URL}/address/${CONTRACT_ADDRESS}`}
+                target="_blank"
+                rel="noreferrer"
+                className="text-slate-300 hover:text-[#3B82F6] inline-flex items-center gap-1"
+              >
+                <span>{CONTRACT_ADDRESS.slice(0, 10)}...{CONTRACT_ADDRESS.slice(-8)}</span>
+                <ExternalLink className="w-3 h-3" />
+              </a>
+            ) : (
+              <span className="text-slate-500">Not configured</span>
+            )}
           </div>
 
           <div className="flex items-center gap-4 text-xs font-sans">
